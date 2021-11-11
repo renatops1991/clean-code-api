@@ -6,11 +6,7 @@
     "rules": {
         "comma-dangle": [
             "error",
-            {
-                "arrays": "never",
-                "objects": "never",
-                "functions": "never"
-            }
-        ]
+            "never"
+        ],
     }
 }
