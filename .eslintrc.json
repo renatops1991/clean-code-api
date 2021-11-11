@@ -2,5 +2,15 @@
     "extends": "standard-with-typescript",
     "parserOptions": {
         "project": "./tsconfig.json"
+    },
+    "Rules": {
+        "comma-dangle": [
+            "error",
+            {
+                "arrays": "never",
+                "objects": "never",
+                "functions": "never"
+            }
+        ]
     }
 }
