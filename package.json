@@ -5,7 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests -watch",
-    "test:staged": "jest --passWithNoTests"
+    "test:staged": "jest --passWithNoTests",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "eslint --fix"
+    ]
   },
   "keywords": [],
   "author": "",
