@@ -4,6 +4,7 @@
         "project": "./tsconfig.json"
     },
     "rules": {
+        "@typescript-eslint/strict-boolean-expression": "off",
         "comma-dangle": [
             "error",
             "never"
