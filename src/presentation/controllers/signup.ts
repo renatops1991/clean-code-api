@@ -9,8 +9,6 @@ export class SignUpController implements Controller {
     this.emailValidator = emailValidator
   }
 
-  cata
-
   handle (httpRequest: HttpRequest): HttpResponse {
     try {
       const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
