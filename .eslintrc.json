@@ -4,10 +4,10 @@
         "project": "./tsconfig.json"
     },
     "rules": {
-        "@typescript-eslint/strict-boolean-expression": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off",
         "comma-dangle": [
             "error",
             "never"
-        ],
+        ]
     }
 }
