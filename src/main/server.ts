@@ -1,4 +1,3 @@
-import express from 'express'
+import app from './config/app'
 
-const app = express()
 app.listen(3003, () => console.log('Server running at http://localhost:3003'))
