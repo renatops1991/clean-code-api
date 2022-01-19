@@ -40,4 +40,9 @@ describe('Validation Composite', () => {
     const expectedError = sut.validate({ email: 'foo' })
     expect(expectedError).toEqual(new Error())
   })
+  it('Should not return error if validation succeeds', () => {
+    const { sut } = makeSut()
+    const expectedError = sut.validate({ email: 'foo' })
+    expect(expectedError).toBeFalsy()
+  })
 })
