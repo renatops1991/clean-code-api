@@ -1,6 +1,6 @@
 
+import { LogErrorRepository } from '../../data/protocols/db/log-error-repository'
 import { Controller, HttpRequest, HttpResponse } from '../../presentation/protocols'
-import { LogErrorRepository } from '../../data/protocols/log-error-repository'
 
 export class LogControllerDecorator implements Controller {
   private readonly controller: Controller
