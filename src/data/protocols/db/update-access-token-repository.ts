@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb'
+
 export interface UpdateAccessTokenRepository{
-  updateAccessToken(id: string, token: string): Promise<void>
+  updateAccessToken(id: ObjectId, token: string): Promise<void>
 }
