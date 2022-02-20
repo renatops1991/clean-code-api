@@ -4,3 +4,4 @@ coverage
 .env
 globalConfig.json
 CleanCodeCompositeValidation.drawio
+.vscode
