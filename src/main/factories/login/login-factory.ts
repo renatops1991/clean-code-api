@@ -13,8 +13,8 @@ export const makeLoginController = (): Controller => {
   const bcryptAdapter = new BcryptAdapter(12)
   const jwtAdapter = new JwtAdapter(env.jwtSecret)
   const accountMongoRepository = new AccountMongoRepository()
-  const dbAuthetication = new DbAuthentication(accountMongoRepository, bcryptAdapter, jwtAdapter, accountMongoRepository)
-  const loginController = new LoginController(dbAuthetication, makeLoginValidation())
+  const dbAuthentication = new DbAuthentication(accountMongoRepository, bcryptAdapter, jwtAdapter, accountMongoRepository)
+  const loginController = new LoginController(dbAuthentication, makeLoginValidation())
   const logMongoRepository = new LogMongoRepository()
   return new LogControllerDecorator(loginController, logMongoRepository)
 }
