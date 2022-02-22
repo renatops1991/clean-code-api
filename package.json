@@ -21,7 +21,7 @@
     ]
   },
   "keywords": [],
-  "author": "",
+  "author": "Renato Pereira",
   "license": "ISC",
   "devDependencies": {
     "@shelf/jest-mongodb": "^2.1.0",
