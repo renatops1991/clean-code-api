@@ -8,7 +8,7 @@ let accountCollection: Collection
 
 describe('LoginRoutes', () => {
   beforeAll(async () => {
-    await MongoHelper.connect(process.env.MONGODB_URI)
+    await MongoHelper.connect(process.env.MONGO_URL)
   })
   afterAll(async () => {
     await MongoHelper.disconnect()
