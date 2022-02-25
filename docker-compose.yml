@@ -4,7 +4,7 @@ services:
     container_name: mongo-clean-code-node-api
     image: mongo:5
     restart: always
-    valumes:
+    volumes:
       - ./data:/data/db
     ports:
       - "27017:27017"
