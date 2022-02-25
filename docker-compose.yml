@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  mongodb:
+    container_name: mongo-clean-code-node-api
+    image: mongo:5
+    restart: always
+    valumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+  api:
+    container_name: clean-code-node-api
+    build: .
+    image: clean-code-node-api
+    restart: always
+    command: npm start
+    volumes:
+      - ./dist:/usr/src/clean-code-node-api/dist
+    ports:
+      - "3003:3003"
+    links:
+      - mongodb
