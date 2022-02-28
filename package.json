@@ -1,8 +1,11 @@
 {
   "name": "clean-code-api",
   "version": "1.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "NodeJs Rest API using TDD, Clean Architecture and Typescript",
+  "author": "Renato Pereira",
+  "license": "ISC",
+  "keywords": [],
+  "repository": "https://github.com/renatops1991/clean-code-api",
   "scripts": {
     "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc",
@@ -20,9 +23,6 @@
       "eslint --fix"
     ]
   },
-  "keywords": [],
-  "author": "Renato Pereira",
-  "license": "ISC",
   "devDependencies": {
     "@shelf/jest-mongodb": "^2.1.0",
     "@types/bcrypt": "^5.0.0",
