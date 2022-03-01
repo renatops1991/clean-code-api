@@ -1,5 +1,5 @@
 {
-  "name": "clean-code-api",
+  "name": "clean-code-node-api",
   "version": "1.2.0",
   "description": "NodeJs Rest API using TDD, Clean Architecture and Typescript",
   "author": "Renato Pereira",
