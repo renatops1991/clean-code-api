@@ -6,3 +6,4 @@ globalConfig.json
 CleanCodeCompositeValidation.drawio
 .vscode
 data
+!src/data
