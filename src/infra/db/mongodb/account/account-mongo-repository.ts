@@ -1,8 +1,8 @@
 
 import { ObjectId } from 'mongodb'
-import { AddAccountRepository } from '../../../../data/protocols/db/add-account-repository'
-import { LoadAccountByEmailRepository } from '../../../../data/protocols/db/load-account-by-email-repository'
-import { UpdateAccessTokenRepository } from '../../../../data/protocols/db/update-access-token-repository'
+import { AddAccountRepository } from '../../../../data/protocols/db/account/add-account-repository'
+import { LoadAccountByEmailRepository } from '../../../../data/protocols/db/account/load-account-by-email-repository'
+import { UpdateAccessTokenRepository } from '../../../../data/protocols/db/account/update-access-token-repository'
 import { AccountModel } from '../../../../domain/models/account'
 import { AddAccountModel } from '../../../../domain/usecases/add-account'
 import { MongoHelper } from '../helpers/mongo-helper'
