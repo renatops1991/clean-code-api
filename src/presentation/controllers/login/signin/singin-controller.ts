@@ -3,14 +3,14 @@ import {
   serverError,
   success,
   unauthorized
-} from '../../helpers/http/http-helper'
+} from '../../../helpers/http/http-helper'
 import {
   Controller,
   HttpRequest,
   HttpResponse,
   Authentication,
   Validation
-} from './login-controller-protocols'
+} from './singin-controller-protocols'
 
 export class LoginController implements Controller {
   constructor (
