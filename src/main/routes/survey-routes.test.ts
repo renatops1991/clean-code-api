@@ -14,13 +14,13 @@ describe('SurveyRoutes', () => {
     await MongoHelper.disconnect()
   })
   beforeEach(async () => {
-    surveyCollection = await MongoHelper.getCollection('accounts')
+    surveyCollection = await MongoHelper.getCollection('surveys')
     await surveyCollection.deleteMany({})
   })
-  describe('Survey', () => {
+  describe('Surveys', () => {
     it('Should return 204 on add survey success', async () => {
       await request(app)
-        .post('/api/survey')
+        .post('/api/surveys')
         .send({
           question: 'foo?',
           answers: [{
