@@ -20,19 +20,21 @@ describe('SurveyMongoRepository', () => {
     surveyCollection = await MongoHelper.getCollection('surveys')
     await surveyCollection.deleteMany({})
   })
-  it('Should return an survey on add success', async () => {
-    const sut = makeSut()
-    await sut.add({
-      question: 'foo?',
-      answers: [{
-        answer: 'bar',
-        image: '/images/foo'
-      },
-      {
-        answer: 'xis?'
-      }]
+  describe('add', () => {
+    it('Should return an survey on add success', async () => {
+      const sut = makeSut()
+      await sut.add({
+        question: 'foo?',
+        answers: [{
+          answer: 'bar',
+          image: '/images/foo'
+        },
+        {
+          answer: 'xis?'
+        }]
+      })
+      const expectedSurvey = await surveyCollection.findOne({ question: 'foo?' })
+      expect(expectedSurvey).toBeTruthy()
     })
-    const expectedSurvey = await surveyCollection.findOne({ question: 'foo?' })
-    expect(expectedSurvey).toBeTruthy()
   })
 })
