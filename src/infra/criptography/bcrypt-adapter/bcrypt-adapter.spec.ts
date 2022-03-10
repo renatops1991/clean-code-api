@@ -34,6 +34,7 @@ describe('Bcrypt Adapter', () => {
       await expect(expectedPromise).rejects.toThrow()
     })
   })
+
   describe('compare', () => {
     it('Should call compare method with correct values', async () => {
       const sut = makeSut()

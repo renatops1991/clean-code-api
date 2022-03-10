@@ -36,6 +36,7 @@ describe('Account Mongo Repository', () => {
       expect(account.password).toBe('password')
     })
   })
+
   describe('loadByEmail', () => {
     it('Should return ana account on loadByEmail success', async () => {
       const sut = makeSut()
@@ -57,6 +58,7 @@ describe('Account Mongo Repository', () => {
       expect(resultAccount).toBeFalsy()
     })
   })
+
   describe('updateAccessToken', () => {
     it('Should update the account accessToken on updateAccessToken success', async () => {
       const sut = makeSut()
