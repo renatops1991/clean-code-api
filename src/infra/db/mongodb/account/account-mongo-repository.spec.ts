@@ -90,5 +90,21 @@ describe('Account Mongo Repository', () => {
       expect(account.email).toBe('johnfoobar@mail.com')
       expect(account.password).toBe('password')
     })
+    it('Should return an account on loadByToken with role', async () => {
+      const sut = makeSut()
+      await accountCollection.insertOne({
+        name: 'john foo bar',
+        email: 'johnfoobar@mail.com',
+        password: 'password',
+        accessToken: 'fooToken',
+        role: 'foo'
+      })
+      const account = await sut.loadByToken('fooToken', 'foo')
+      expect(account).toBeTruthy()
+      expect(account.id).toBeTruthy()
+      expect(account.name).toBe('john foo bar')
+      expect(account.email).toBe('johnfoobar@mail.com')
+      expect(account.password).toBe('password')
+    })
   })
 })
