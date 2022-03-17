@@ -1,3 +1,4 @@
+[![Build Status](https://app.travis-ci.com/renatops1991/clean-code-api.svg?token=ZnWiximpccuhiNf9ij9f&branch=production)](https://app.travis-ci.com/renatops1991/clean-code-api)
 # Clean code Node API
 
 This API is part of the "NodeJs Rest API using TDD, Clean Architecture and Typescript" training.
