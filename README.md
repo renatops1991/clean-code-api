@@ -2,28 +2,9 @@
 
 This API is part of the "NodeJs Rest API using TDD, Clean Architecture and Typescript" training.
 
-## Feature
+## routes
 - Create user: `{{host}}/api/signup`
-
-    ``` json
-   //Payload
-    {
-        "name": "john foo bar",
-        "email": "john@bar.com",
-        "password": "123",
-        "passwordConfirmation": "123"
-    }
-    ```
 - Sign in user: `{{host}}/api/login`
-
-    ``` json
-    //Payload
-    {
-        "email": "john@bar.com",
-        "password": "123"
-    }
-    ```
-
 ## API Docs
 (In progress...)
 
