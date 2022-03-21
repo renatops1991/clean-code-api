@@ -31,7 +31,8 @@ describe('SurveyMongoRepository', () => {
         },
         {
           answer: 'xis?'
-        }]
+        }],
+        date: new Date()
       })
       const expectedSurvey = await surveyCollection.findOne({ question: 'foo?' })
       expect(expectedSurvey).toBeTruthy()
