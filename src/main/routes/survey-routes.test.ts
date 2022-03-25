@@ -100,5 +100,27 @@ describe('SurveyRoutes', () => {
         .set('x-access-token', accessToken)
         .expect(200)
     })
+    it('Should return 204 if not exists surveys', async () => {
+      const password = await hash('123', 12)
+      const account = await accountCollection.insertOne({
+        name: 'john foo bar',
+        email: 'john@bar.com',
+        password,
+        role: 'admin'
+      })
+      const id = account.insertedId
+      const accessToken = sign({ id }, env.jwtSecret)
+      await accountCollection.updateOne({
+        _id: id
+      }, {
+        $set: {
+          accessToken
+        }
+      })
+      await request(app)
+        .get('/api/surveys')
+        .set('x-access-token', accessToken)
+        .expect(204)
+    })
   })
 })
