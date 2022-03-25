@@ -23,7 +23,7 @@ describe('SurveyRoutes', () => {
     accountCollection = await MongoHelper.getCollection('accounts')
     await accountCollection.deleteMany({})
   })
-  describe('Surveys', () => {
+  describe('CreateSurvey', () => {
     it('Should return 403 on add survey without accessToken', async () => {
       await request(app)
         .post('/api/surveys')
@@ -62,6 +62,14 @@ describe('SurveyRoutes', () => {
             image: 'images/foo.jpg'
           }]
         }).expect(204)
+    })
+  })
+
+  describe('loadAllSurvey', () => {
+    it('Should return 403 on load surveys without accessToken', async () => {
+      await request(app)
+        .get('/api/surveys')
+        .expect(403)
     })
   })
 })
