@@ -8,7 +8,7 @@
   "repository": "https://github.com/renatops1991/clean-code-api",
   "scripts": {
     "start": "node dist/main/server.js",
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && tsc -p tsconfig-build.json",
     "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
     "start:dev": "npm run build && docker-compose up -d",
     "stop:dev": "docker-compose down",
@@ -57,11 +57,15 @@
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
     "mongodb": "^4.2.0",
     "nodemon": "^2.0.15",
     "validator": "^13.7.0"
   },
   "engines": {
     "node": "14.x"
+  },
+  "_moduleAliases": {
+    "@": "dist"
   }
 }

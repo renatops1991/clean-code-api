@@ -1,16 +1,16 @@
 import {
-  badRequest,
-  serverError,
-  success,
-  unauthorized
-} from '../../../helpers/http/http-helper'
-import {
   Controller,
   HttpRequest,
   HttpResponse,
   Authentication,
   Validation
 } from './singin-controller-protocols'
+import {
+  badRequest,
+  serverError,
+  success,
+  unauthorized
+} from '@/presentation/helpers/http/http-helper'
 
 export class LoginController implements Controller {
   constructor (

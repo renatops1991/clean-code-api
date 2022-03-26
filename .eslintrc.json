@@ -1,12 +1,13 @@
 {
     "extends": "standard-with-typescript",
     "parserOptions": {
-        "project": "./tsconfig.eslint.json"
+        "project": "./tsconfig.json"
     },
     "rules": {
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/method-signature-style": "off",
         "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
         "comma-dangle": [
             "error",
             "never"

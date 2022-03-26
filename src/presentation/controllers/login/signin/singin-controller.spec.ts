@@ -1,7 +1,12 @@
 import { LoginController } from './singin-controller'
-import { badRequest, serverError, success, unauthorized } from '../../../helpers/http/http-helper'
-import { MissingParamError } from '../../../errors'
-import { HttpRequest, Authentication, Validation, AuthenticationModel } from './singin-controller-protocols'
+import {
+  HttpRequest,
+  Authentication,
+  Validation,
+  AuthenticationModel
+} from './singin-controller-protocols'
+import { badRequest, serverError, success, unauthorized } from '@/presentation/helpers/http/http-helper'
+import { MissingParamError } from '@/presentation/errors'
 
 const makeAuthentication = (): Authentication => {
   class AuthenticationSub implements Authentication {
