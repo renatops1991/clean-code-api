@@ -16,7 +16,7 @@ const makeFakeSurvey = (): SurveyModel => {
       answer: 'bar',
       image: 'images/foo.png'
     }],
-    date: new Date()
+    createdAt: new Date()
   }
 }
 

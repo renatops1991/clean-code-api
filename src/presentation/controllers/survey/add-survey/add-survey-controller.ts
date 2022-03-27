@@ -23,7 +23,7 @@ export class AddSurveyController implements Controller {
       await this.addSurvey.add({
         question,
         answers,
-        date: new Date()
+        createdAt: new Date()
       })
       return noContent()
     } catch (error) {

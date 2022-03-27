@@ -11,7 +11,7 @@ const makeFakeSurveys = (): SurveyModel[] => {
       answer: 'bar',
       image: 'images/foo.png'
     }],
-    date: new Date()
+    createdAt: new Date()
   },
   {
     id: 'bar',
@@ -20,7 +20,7 @@ const makeFakeSurveys = (): SurveyModel[] => {
       answer: 'foo',
       image: 'images/bar.png'
     }],
-    date: new Date()
+    createdAt: new Date()
   }]
 }
 

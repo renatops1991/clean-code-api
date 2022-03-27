@@ -13,7 +13,7 @@ const makeFakeSurveyData = (): AddSurveyModel => ({
     answer: 'bar',
     image: 'images/foo.jpg'
   }],
-  date: new Date()
+  createdAt: new Date()
 })
 
 const makeAddSurveyRepository = (): AddSurveyRepository => {
