@@ -4,7 +4,7 @@ import {
   Hasher,
   AddAccountRepository,
   LoadAccountByEmailRepository
-} from './db-add-account-protocols'
+} from './db-account-protocols'
 import { DbAddAccount } from './db-add-account'
 
 type SutTypes = {
