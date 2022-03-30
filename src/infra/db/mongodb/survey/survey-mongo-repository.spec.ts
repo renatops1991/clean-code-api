@@ -75,7 +75,7 @@ describe('SurveyMongoRepository', () => {
         date: new Date()
       })
       const sut = makeSut()
-      const survey = await sut.loadById(createdResponse.insertedId)
+      const survey = await sut.loadById(createdResponse.insertedId.toString())
       expect(survey).toBeTruthy()
     })
   })
