@@ -19,6 +19,9 @@ const makeSurvey = async (): Promise<SurveyModel> => {
     answers: [{
       image: '/image/foo.jpg',
       answer: 'bar'
+    },
+    {
+      answer: 'xis?'
     }],
     createdAt: new Date()
   })
@@ -78,6 +81,33 @@ describe('SurveyResultMongoRepository', () => {
       expect(expectedSurveyResult).toBeTruthy()
       expect(MongoHelper.map(expectedSurveyResult).id).toBeTruthy()
       expect(expectedSurveyResult.answer).toEqual(survey.answers[0].answer)
+    })
+
+    it('Should update survey result if its not new', async () => {
+      const survey = await makeSurvey()
+      const account = await makeAccount()
+      const surveyResultResponse = await surveyResultCollection.insertOne({
+        surveyId: survey.id,
+        accountId: account.id,
+        answer: survey.answers[0].answer,
+        createdAt: new Date()
+      })
+      const sut = makeSut()
+      await sut.save({
+        surveyId: survey.id,
+        accountId: account.id,
+        answer: survey.answers[1].answer,
+        createdAt: new Date()
+      })
+
+      const expectedSurveyResult = await surveyResultCollection.findOne({
+        accountId: account.id,
+        surveyId: survey.id
+      })
+
+      expect(expectedSurveyResult).toBeTruthy()
+      expect(MongoHelper.map(expectedSurveyResult).id).toEqual(surveyResultResponse.insertedId)
+      expect(expectedSurveyResult.answer).toEqual(survey.answers[1].answer)
     })
   })
 })
