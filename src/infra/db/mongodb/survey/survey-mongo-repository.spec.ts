@@ -55,6 +55,7 @@ describe('SurveyMongoRepository', () => {
       const sut = makeSut()
       const surveysList = await sut.loadAll()
       expect(surveysList.length).toBe(1)
+      expect(surveysList[0].id).toBeTruthy()
       expect(surveysList[0].question).toBe('foo')
     })
     it('Should return empty list', async () => {
@@ -66,7 +67,7 @@ describe('SurveyMongoRepository', () => {
 
   describe('loadById', () => {
     it('Should load survey by id on success', async () => {
-      const createdResponse = await surveyCollection.insertOne({
+      const createdSurvey = await surveyCollection.insertOne({
         question: 'foo',
         answers: [{
           image: 'https://image.com/foo.jpg',
@@ -74,9 +75,12 @@ describe('SurveyMongoRepository', () => {
         }],
         date: new Date()
       })
+
+      const surveyResult = await surveyCollection.findOne({ _id: createdSurvey.insertedId })
       const sut = makeSut()
-      const survey = await sut.loadById(createdResponse.insertedId.toString())
+      const survey = await sut.loadById(MongoHelper.map(surveyResult).id)
       expect(survey).toBeTruthy()
+      expect(survey.id).toBeTruthy()
     })
   })
 })
