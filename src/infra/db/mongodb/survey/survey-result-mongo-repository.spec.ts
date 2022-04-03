@@ -1,9 +1,9 @@
 import { SurveyResultMongoRepository } from './survey-result-mongo-repository'
 import { MongoHelper } from '../helpers/mongo-helper'
-import { Collection } from 'mongodb'
-import MockDate from 'mockdate'
 import { SurveyModel } from '@/domain/models/survey'
 import { AccountModel } from '@/domain/models/account'
+import { Collection, ObjectId } from 'mongodb'
+import MockDate from 'mockdate'
 
 let surveyCollection: Collection
 let surveyResultCollection: Collection
@@ -79,35 +79,33 @@ describe('SurveyResultMongoRepository', () => {
       })
 
       expect(expectedSurveyResult).toBeTruthy()
-      expect(MongoHelper.map(expectedSurveyResult).id).toBeTruthy()
+      expect(new ObjectId(expectedSurveyResult.id)).toBeTruthy()
       expect(expectedSurveyResult.answer).toEqual(survey.answers[0].answer)
     })
 
     it('Should update survey result if its not new', async () => {
       const survey = await makeSurvey()
       const account = await makeAccount()
-      const surveyResultResponse = await surveyResultCollection.insertOne({
+      const createSurveyResult = await surveyResultCollection.insertOne({
         surveyId: survey.id,
         accountId: account.id,
         answer: survey.answers[0].answer,
         createdAt: new Date()
       })
+
       const sut = makeSut()
-      await sut.save({
+      const updateSurveyResult = await sut.save({
         surveyId: survey.id,
         accountId: account.id,
         answer: survey.answers[1].answer,
         createdAt: new Date()
       })
 
-      const expectedSurveyResult = await surveyResultCollection.findOne({
-        accountId: account.id,
-        surveyId: survey.id
-      })
+      const updateSurveyResultResponse = await surveyResultCollection.findOne({ _id: updateSurveyResult.id })
 
-      expect(expectedSurveyResult).toBeTruthy()
-      expect(MongoHelper.map(expectedSurveyResult).id).toEqual(surveyResultResponse.insertedId)
-      expect(expectedSurveyResult.answer).toEqual(survey.answers[1].answer)
+      expect(updateSurveyResult).toBeTruthy()
+      expect(updateSurveyResult.id).toStrictEqual(createSurveyResult.insertedId)
+      expect(updateSurveyResultResponse.answer).toStrictEqual(survey.answers[1].answer)
     })
   })
 })
