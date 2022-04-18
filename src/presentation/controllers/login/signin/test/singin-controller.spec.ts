@@ -3,14 +3,14 @@ import {
   HttpRequest,
   Authentication,
   Validation,
-  AuthenticationModel
+  AuthenticationParams
 } from '../singin-controller-protocols'
 import { badRequest, serverError, success, unauthorized } from '@/presentation/helpers/http/http-helper'
 import { MissingParamError } from '@/presentation/errors'
 
 const makeAuthentication = (): Authentication => {
   class AuthenticationSub implements Authentication {
-    async auth (authentication: AuthenticationModel): Promise<string> {
+    async auth (authentication: AuthenticationParams): Promise<string> {
       return 'authToken'
     }
   }

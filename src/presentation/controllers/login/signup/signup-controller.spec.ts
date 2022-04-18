@@ -6,7 +6,7 @@ import {
   HttpRequest,
   Validation,
   Authentication,
-  AuthenticationModel
+  AuthenticationParams
 } from './signup-controller-protocols'
 import { EmailInUseError, MissingParamError, ServerError } from '@/presentation/errors'
 import {
@@ -34,7 +34,7 @@ const makeAddAccount = (): AddAccount => {
 
 const makeAuthentication = (): Authentication => {
   class AuthenticationStub implements Authentication {
-    async auth (authentication: AuthenticationModel): Promise<string> {
+    async auth (authentication: AuthenticationParams): Promise<string> {
       return await new Promise(resolve => resolve('authToken'))
     }
   }
