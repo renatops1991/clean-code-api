@@ -1,7 +1,7 @@
-import { Decrypted } from '@/data/protocols/criptography/decrypted'
-import { Encrypted } from '@/data/protocols/criptography/encrypted'
-import { HashComparer } from '@/data/protocols/criptography/hash-comparer'
-import { Hashed } from '@/data/protocols/criptography/hashed'
+import { Decrypted } from '@/data/protocols/cryptography/decrypted'
+import { Encrypted } from '@/data/protocols/cryptography/encrypted'
+import { HashComparer } from '@/data/protocols/cryptography/hash-comparer'
+import { Hashed } from '@/data/protocols/cryptography/hashed'
 
 export const mockHashed = (): Hashed => {
   class HashStub implements Hashed {

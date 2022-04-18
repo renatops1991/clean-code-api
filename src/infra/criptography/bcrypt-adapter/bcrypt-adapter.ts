@@ -1,5 +1,5 @@
-import { HashComparer } from '@/data/protocols/criptography/hash-comparer'
-import { Hashed } from '@/data/protocols/criptography/hashed'
+import { HashComparer } from '@/data/protocols/cryptography/hash-comparer'
+import { Hashed } from '@/data/protocols/cryptography/hashed'
 import bcrypt from 'bcrypt'
 
 export class BcryptAdapter implements Hashed, HashComparer {

@@ -1,14 +1,18 @@
 import { DbAuthentication } from '../db-authentication'
 import {
-  AccountModel,
   AuthenticationParams,
   HashComparer,
   LoadAccountByEmailRepository,
   Encrypted,
   UpdateAccessTokenRepository
 } from '../db-authentication-protocols'
-import { mockAccountModel, throwError } from '@/domain/mocks'
-import { mockHashComparer, mockEncrypted } from '@/data/mocks'
+import { throwError } from '@/domain/mocks'
+import {
+  mockHashComparer,
+  mockEncrypted,
+  mockLoadAccountByEmailRepository,
+  mockUpdateAccessTokenRepository
+} from '@/data/mocks'
 
 type SutTypes = {
   sut: DbAuthentication
@@ -19,10 +23,10 @@ type SutTypes = {
 }
 
 const makeSut = (): SutTypes => {
-  const loadAccountByEmailRepositoryStub = makeLoadAccountByEmailRepository()
+  const loadAccountByEmailRepositoryStub = mockLoadAccountByEmailRepository()
   const hashComparerStub = mockHashComparer()
   const encryptedStub = mockEncrypted()
-  const updateAccessTokenRepositoryStub = makeUpdateAccessTokenRepositoryStub()
+  const updateAccessTokenRepositoryStub = mockUpdateAccessTokenRepository()
   const sut = new DbAuthentication(loadAccountByEmailRepositoryStub, hashComparerStub, encryptedStub, updateAccessTokenRepositoryStub)
   return {
     sut,
@@ -38,23 +42,6 @@ const makeFakeAuthentication = (): AuthenticationParams => ({
   password: 'foo'
 })
 
-const makeLoadAccountByEmailRepository = (): LoadAccountByEmailRepository => {
-  class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
-    async loadByEmail (email: string): Promise<AccountModel> {
-      return await new Promise(resolve => resolve(mockAccountModel()))
-    }
-  }
-  return new LoadAccountByEmailRepositoryStub()
-}
-
-const makeUpdateAccessTokenRepositoryStub = (): UpdateAccessTokenRepository => {
-  class UpdateAccessTokenRepositoryStub implements UpdateAccessTokenRepository {
-    async updateAccessToken (id: string, token: string): Promise<void> {
-      return await new Promise(resolve => resolve())
-    }
-  }
-  return new UpdateAccessTokenRepositoryStub()
-}
 describe('DbAuthentication UseCase', () => {
   it('Should call LoadAccountByEmailRepository HashComparer with correct email', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = makeSut()

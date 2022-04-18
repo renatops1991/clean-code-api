@@ -1,5 +1,5 @@
-import { Decrypted } from '@/data/protocols/criptography/decrypted'
-import { Encrypted } from '@/data/protocols/criptography/encrypted'
+import { Decrypted } from '@/data/protocols/cryptography/decrypted'
+import { Encrypted } from '@/data/protocols/cryptography/encrypted'
 import jwt from 'jsonwebtoken'
 
 export class JwtAdapter implements Encrypted, Decrypted {
