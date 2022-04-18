@@ -15,6 +15,7 @@ import {
   serverError,
   forbidden
 } from '@/presentation/helpers/http/http-helper'
+import { mockAccountModel } from '@/domain/mocks'
 
 type SutTypes = {
   sut: SignUpController
@@ -26,7 +27,7 @@ type SutTypes = {
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
     async add (account: AddAccountParams): Promise<AccountModel> {
-      return await new Promise(resolve => resolve(makeFakeAccount()))
+      return await new Promise(resolve => resolve(mockAccountModel()))
     }
   }
   return new AddAccountStub()
@@ -49,13 +50,6 @@ const makeValidation = (): Validation => {
   }
   return new ValidationStub()
 }
-
-const makeFakeAccount = (): AccountModel => ({
-  id: 'foo',
-  name: 'john',
-  email: 'johnFoo@bar.com',
-  password: 'bar'
-})
 
 const makeSut = (): SutTypes => {
   const addAccountStub = makeAddAccount()
