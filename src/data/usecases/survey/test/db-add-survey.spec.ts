@@ -1,6 +1,7 @@
 import { DbAddSurvey } from '../db-add-survey'
-import { AddSurveyParams, AddSurveyRepository } from '../db-survey-protocols'
-import { throwError } from '@/domain/mocks'
+import { AddSurveyRepository } from '../db-survey-protocols'
+import { throwError, fixturesSurveyParams } from '@/domain/mocks'
+import { mockAddSurveyRepository } from '@/data/mocks'
 import MockDate from 'mockdate'
 
 interface SutTypes{
@@ -8,26 +9,8 @@ interface SutTypes{
   addSurveyRepositoryStub: AddSurveyRepository
 }
 
-const makeFakeSurveyData = (): AddSurveyParams => ({
-  question: 'foo?',
-  answers: [{
-    answer: 'bar',
-    image: 'images/foo.jpg'
-  }],
-  createdAt: new Date()
-})
-
-const makeAddSurveyRepository = (): AddSurveyRepository => {
-  class AddSurveyRepositoryStub implements AddSurveyRepository {
-    async add (surveyData: AddSurveyParams): Promise<void> {
-      return await new Promise(resolve => resolve())
-    }
-  }
-  return new AddSurveyRepositoryStub()
-}
-
 const makeSut = (): SutTypes => {
-  const addSurveyRepositoryStub = makeAddSurveyRepository()
+  const addSurveyRepositoryStub = mockAddSurveyRepository()
   const sut = new DbAddSurvey(addSurveyRepositoryStub)
 
   return {
@@ -46,7 +29,7 @@ describe('DbAddSurvey UseCase', () => {
   it('Should call AddSurveyRepository with correct values', async () => {
     const { sut, addSurveyRepositoryStub } = makeSut()
     const addSpy = jest.spyOn(addSurveyRepositoryStub, 'add')
-    const surveyData = makeFakeSurveyData()
+    const surveyData = fixturesSurveyParams()
     await sut.add(surveyData)
     expect(addSpy).toHaveBeenCalledWith(surveyData)
   })
@@ -54,7 +37,7 @@ describe('DbAddSurvey UseCase', () => {
     const { sut, addSurveyRepositoryStub } = makeSut()
     jest.spyOn(addSurveyRepositoryStub, 'add')
       .mockImplementationOnce(throwError)
-    const expectedResponse = sut.add(makeFakeSurveyData())
+    const expectedResponse = sut.add(fixturesSurveyParams())
     await expect(expectedResponse).rejects.toThrow()
   })
 })

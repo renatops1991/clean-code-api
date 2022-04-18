@@ -9,7 +9,7 @@ import {
   SaveSurveyResult,
   SaveSurveyResultParams
 } from '../save-survey-result-protocols'
-import { throwError } from '@/domain/mocks'
+import { throwError, fixturesSurveyModel } from '@/domain/mocks'
 import MockDate from 'mockdate'
 
 const makeFakeRequest = (): HttpRequest => ({
@@ -20,16 +20,6 @@ const makeFakeRequest = (): HttpRequest => ({
     answer: 'bar'
   },
   accountId: 'foo'
-})
-
-const makeFakeSurvey = (): SurveyModel => ({
-  id: 'foo',
-  question: 'foo',
-  answers: [{
-    image: 'image/foo.jpg',
-    answer: 'bar'
-  }],
-  createdAt: new Date()
 })
 
 const makeFakeSaveSurveyResult = (): SurveyResultModel => ({
@@ -43,7 +33,7 @@ const makeFakeSaveSurveyResult = (): SurveyResultModel => ({
 const makeLoadSurveyById = (): LoadSurveyById => {
   class LoadSurveyByIdStub implements LoadSurveyById {
     async loadById (id: string): Promise<SurveyModel> {
-      return await new Promise(resolve => resolve(makeFakeSurvey()))
+      return await new Promise(resolve => resolve(fixturesSurveyModel()))
     }
   }
   return new LoadSurveyByIdStub()

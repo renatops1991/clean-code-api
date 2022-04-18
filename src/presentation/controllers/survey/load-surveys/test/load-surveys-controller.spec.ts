@@ -8,7 +8,7 @@ type SutTypes = {
   loadSurveysStub: LoadSurveys
 }
 
-const makeFakeSurveys = (): SurveyModel[] => {
+const fixturesSurveysModel = (): SurveyModel[] => {
   return [{
     id: 'foo',
     question: 'foo?',
@@ -32,7 +32,7 @@ const makeFakeSurveys = (): SurveyModel[] => {
 const makeLoadSurveysStub = (): LoadSurveys => {
   class LoadSurveysStub implements LoadSurveys {
     async load (): Promise<SurveyModel[]> {
-      return await new Promise(resolve => resolve(makeFakeSurveys()))
+      return await new Promise(resolve => resolve(fixturesSurveysModel()))
     }
   }
   return new LoadSurveysStub()
@@ -63,7 +63,7 @@ describe('LoadSurveys Controller', () => {
   it('Should return 200 on success', async () => {
     const { sut } = makeSut()
     const expectedSurveys = await sut.handle({})
-    expect(expectedSurveys).toEqual(success(makeFakeSurveys()))
+    expect(expectedSurveys).toEqual(success(fixturesSurveysModel()))
   })
   it('Should return 204 if LoadSurveys returns empty', async () => {
     const { sut, loadSurveysStub } = makeSut()
