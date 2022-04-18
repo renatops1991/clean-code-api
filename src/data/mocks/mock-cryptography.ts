@@ -1,5 +1,5 @@
-import { Decrypter } from '@/data/protocols/criptography/decrypter'
-import { Encrypter } from '@/data/protocols/criptography/encrypter'
+import { Decrypted } from '@/data/protocols/criptography/decrypted'
+import { Encrypted } from '@/data/protocols/criptography/encrypted'
 import { HashComparer } from '@/data/protocols/criptography/hash-comparer'
 import { Hashed } from '@/data/protocols/criptography/hashed'
 
@@ -12,8 +12,8 @@ export const mockHashed = (): Hashed => {
   return new HashStub()
 }
 
-export const mockDecrypted = (): Decrypter => {
-  class DecryptedStub implements Decrypter {
+export const mockDecrypted = (): Decrypted => {
+  class DecryptedStub implements Decrypted {
     async decrypt (token: string): Promise<string> {
       return await new Promise(resolve => resolve('fooToken'))
     }
@@ -21,8 +21,8 @@ export const mockDecrypted = (): Decrypter => {
   return new DecryptedStub()
 }
 
-export const mockEncrypted = (): Encrypter => {
-  class EncryptedStub implements Encrypter {
+export const mockEncrypted = (): Encrypted => {
+  class EncryptedStub implements Encrypted {
     async encrypt (id: string): Promise<string> {
       return await new Promise(resolve => resolve('foo'))
     }

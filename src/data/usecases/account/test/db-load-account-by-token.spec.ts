@@ -2,7 +2,7 @@
 import { DbLoadAccountByToken } from '../db-load-account-by-token'
 import {
   AccountModel,
-  Decrypter,
+  Decrypted,
   LoadAccountByTokenRepository
 } from '../db-account-protocols'
 import { mockAccountModel, throwError } from '@/domain/mocks'
@@ -10,7 +10,7 @@ import { mockDecrypted } from '@/data/mocks'
 
 type SutTypes = {
   sut: DbLoadAccountByToken
-  decryptedStub: Decrypter
+  decryptedStub: Decrypted
   loadAccountByTokenRepositoryStub: LoadAccountByTokenRepository
 }
 
@@ -35,13 +35,13 @@ const makeSut = (): SutTypes => {
 }
 
 describe('DbLoadAccountByToken UseCase', () => {
-  it('Should call Decrypter with correct values', async () => {
+  it('Should call Decrypted with correct values', async () => {
     const { sut, decryptedStub } = makeSut()
     const decryptSpy = jest.spyOn(decryptedStub, 'decrypt')
     await sut.load('fooToken', 'fooRole')
     expect(decryptSpy).toHaveBeenCalledWith('fooToken')
   })
-  it('Should return null if Decrypter returns null', async () => {
+  it('Should return null if Decrypted returns null', async () => {
     const { sut, decryptedStub } = makeSut()
     jest.spyOn(decryptedStub, 'decrypt')
       .mockReturnValueOnce(new Promise(resolve => resolve(null)))
@@ -66,7 +66,7 @@ describe('DbLoadAccountByToken UseCase', () => {
     const expectedAccount = await sut.load('fooToken', 'fooRole')
     expect(expectedAccount).toEqual(mockAccountModel())
   })
-  it('Should throw if Decrypter throws', async () => {
+  it('Should throw if Decrypted throws', async () => {
     const { sut, decryptedStub } = makeSut()
     jest.spyOn(decryptedStub, 'decrypt')
       .mockImplementationOnce(throwError)

@@ -4,7 +4,7 @@ import {
   AuthenticationParams,
   HashComparer,
   LoadAccountByEmailRepository,
-  Encrypter,
+  Encrypted,
   UpdateAccessTokenRepository
 } from '../db-authentication-protocols'
 import { mockAccountModel, throwError } from '@/domain/mocks'
@@ -14,7 +14,7 @@ type SutTypes = {
   sut: DbAuthentication
   loadAccountByEmailRepositoryStub: LoadAccountByEmailRepository
   hashComparerStub: HashComparer
-  encryptedStub: Encrypter
+  encryptedStub: Encrypted
   updateAccessTokenRepositoryStub: UpdateAccessTokenRepository
 }
 
@@ -92,13 +92,13 @@ describe('DbAuthentication UseCase', () => {
     const accessToken = await sut.auth(makeFakeAuthentication())
     expect(accessToken).toBeNull()
   })
-  it('Should call Encrypter with correct id', async () => {
+  it('Should call Encrypted with correct id', async () => {
     const { sut, encryptedStub } = makeSut()
     const encryptSpy = jest.spyOn(encryptedStub, 'encrypt')
     await sut.auth(makeFakeAuthentication())
     expect(encryptSpy).toHaveBeenCalledWith('foo')
   })
-  it('Should throw exception if Encrypter throws error', async () => {
+  it('Should throw exception if Encrypted throws error', async () => {
     const { sut, encryptedStub } = makeSut()
     jest.spyOn(encryptedStub, 'encrypt').mockImplementationOnce(throwError)
     const expectedPromise = sut.auth(makeFakeAuthentication())

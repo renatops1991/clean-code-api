@@ -1,3 +1,3 @@
-export interface Encrypter{
+export interface Encrypted{
   encrypt (value: string): Promise<string>
 }
