@@ -1,5 +1,6 @@
 import { DbAddSurvey } from '../db-add-survey'
 import { AddSurveyParams, AddSurveyRepository } from '../db-survey-protocols'
+import { throwError } from '@/domain/mocks'
 import MockDate from 'mockdate'
 
 interface SutTypes{
@@ -52,7 +53,7 @@ describe('DbAddSurvey UseCase', () => {
   it('Should throw the exception of Add SurveyRepository throws error', async () => {
     const { sut, addSurveyRepositoryStub } = makeSut()
     jest.spyOn(addSurveyRepositoryStub, 'add')
-      .mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+      .mockImplementationOnce(throwError)
     const expectedResponse = sut.add(makeFakeSurveyData())
     await expect(expectedResponse).rejects.toThrow()
   })

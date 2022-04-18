@@ -6,7 +6,7 @@ import {
   LoadAccountByEmailRepository
 } from '../db-account-protocols'
 import { DbAddAccount } from '../db-add-account'
-import { mockAccountModel, mockAddAccountParams } from '@/domain/mocks'
+import { mockAccountModel, mockAddAccountParams, throwError } from '@/domain/mocks'
 
 type SutTypes = {
   sut: DbAddAccount
@@ -64,7 +64,7 @@ describe('DbAddAccount UseCase', () => {
   })
   it('Should pass the exception if Hasher throws', async () => {
     const { sut, hashStub } = makeSut()
-    jest.spyOn(hashStub, 'hash').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest.spyOn(hashStub, 'hash').mockImplementationOnce(throwError)
     const promise = sut.add(mockAddAccountParams())
     await expect(promise).rejects.toThrow()
   })
@@ -80,7 +80,7 @@ describe('DbAddAccount UseCase', () => {
   })
   it('Should pass the exception if AddAccountRepository throws', async () => {
     const { sut, addAccountRepositoryStub } = makeSut()
-    jest.spyOn(addAccountRepositoryStub, 'add').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest.spyOn(addAccountRepositoryStub, 'add').mockImplementationOnce(throwError)
     const promise = sut.add(mockAddAccountParams())
     await expect(promise).rejects.toThrow()
   })

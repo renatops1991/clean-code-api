@@ -9,6 +9,7 @@ import {
   SaveSurveyResult,
   SaveSurveyResultParams
 } from '../save-survey-result-protocols'
+import { throwError } from '@/domain/mocks'
 import MockDate from 'mockdate'
 
 const makeFakeRequest = (): HttpRequest => ({
@@ -95,7 +96,7 @@ describe('SaveSurveyResult Controller', () => {
   })
   it('Should return 500 if LoadSurveyById throws exception', async () => {
     const { sut, loadSurveyByIdStub } = makeSut()
-    jest.spyOn(loadSurveyByIdStub, 'loadById').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest.spyOn(loadSurveyByIdStub, 'loadById').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(makeFakeRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
   })
@@ -124,7 +125,7 @@ describe('SaveSurveyResult Controller', () => {
   })
   it('Should return 500 if SaveSurveyResult throws exception', async () => {
     const { sut, saveSurveyResultStub } = makeSut()
-    jest.spyOn(saveSurveyResultStub, 'save').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest.spyOn(saveSurveyResultStub, 'save').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(makeFakeRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
   })
