@@ -41,7 +41,7 @@ describe('DbAddAccount UseCase', () => {
     const { sut, hashStub } = makeSut()
     const encryptSpy = jest.spyOn(hashStub, 'hash')
     await sut.add(fixturesAddAccountParams())
-    expect(encryptSpy).toHaveBeenLastCalledWith('validPassword')
+    expect(encryptSpy).toHaveBeenLastCalledWith('hash Password')
   })
   it('Should pass the exception if Hashed throws', async () => {
     const { sut, hashStub } = makeSut()
