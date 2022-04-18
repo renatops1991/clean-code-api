@@ -1,7 +1,7 @@
 import {
   AccountModel,
   AddAccountParams,
-  Hasher,
+  Hashed,
   AddAccountRepository,
   LoadAccountByEmailRepository
 } from '../db-account-protocols'
@@ -11,7 +11,7 @@ import { mockHashed } from '@/data/mocks'
 
 type SutTypes = {
   sut: DbAddAccount
-  hashStub: Hasher
+  hashStub: Hashed
   addAccountRepositoryStub: AddAccountRepository
   loadAccountByEmailRepositoryStub: LoadAccountByEmailRepository
 }
@@ -48,13 +48,13 @@ const makeSut = (): SutTypes => {
   }
 }
 describe('DbAddAccount UseCase', () => {
-  it('Should call Hasher with correct password', async () => {
+  it('Should call Hashed with correct password', async () => {
     const { sut, hashStub } = makeSut()
     const encryptSpy = jest.spyOn(hashStub, 'hash')
     await sut.add(mockAddAccountParams())
     expect(encryptSpy).toHaveBeenLastCalledWith('validPassword')
   })
-  it('Should pass the exception if Hasher throws', async () => {
+  it('Should pass the exception if Hashed throws', async () => {
     const { sut, hashStub } = makeSut()
     jest.spyOn(hashStub, 'hash').mockImplementationOnce(throwError)
     const promise = sut.add(mockAddAccountParams())
