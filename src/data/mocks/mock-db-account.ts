@@ -6,12 +6,12 @@ import {
   UpdateAccessTokenRepository
 } from '@/data/usecases/account/db-account-protocols'
 import { AccountModel } from '@/domain/models/account'
-import { mockAccountModel } from '@/domain/mocks'
+import { fixturesAccountModel } from '@/domain/mocks'
 
 export const mockAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
     async add (accountData: AddAccountParams): Promise<AccountModel> {
-      return await new Promise(resolve => resolve(mockAccountModel()))
+      return await new Promise(resolve => resolve(fixturesAccountModel()))
     }
   }
 
@@ -21,7 +21,7 @@ export const mockAddAccountRepository = (): AddAccountRepository => {
 export const mockLoadAccountByEmailRepository = (): LoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
     async loadByEmail (email: string): Promise<AccountModel> {
-      return await new Promise(resolve => resolve(mockAccountModel()))
+      return await new Promise(resolve => resolve(fixturesAccountModel()))
     }
   }
   return new LoadAccountByEmailRepositoryStub()
@@ -30,7 +30,7 @@ export const mockLoadAccountByEmailRepository = (): LoadAccountByEmailRepository
 export const mockLoadAccountByTokenRepository = (): LoadAccountByTokenRepository => {
   class LoadAccountByTokenRepositoryStub implements LoadAccountByTokenRepository {
     async loadByToken (token: string, role?: string): Promise<AccountModel> {
-      return await new Promise(resolve => resolve(mockAccountModel()))
+      return await new Promise(resolve => resolve(fixturesAccountModel()))
     }
   }
   return new LoadAccountByTokenRepositoryStub()
