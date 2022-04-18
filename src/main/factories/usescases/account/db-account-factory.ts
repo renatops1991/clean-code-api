@@ -4,8 +4,8 @@ import { DbLoadAccountByToken } from '@/data/usecases/account/db-load-account-by
 import { BcryptAdapter } from '@/infra/criptography/bcrypt-adapter/bcrypt-adapter'
 import { JwtAdapter } from '@/infra/criptography/jwt-adapter/jwt-adapter'
 import { AccountMongoRepository } from '@/infra/db/mongodb/account/account-mongo-repository'
-import { AddAccount } from '@/domain/usecases/add-account'
-import { LoadAccountByToken } from '@/domain/usecases/load-account-by-token'
+import { AddAccount } from '@/domain/usecases/account/add-account'
+import { LoadAccountByToken } from '@/domain/usecases/account/load-account-by-token'
 import env from '@/main/config/env'
 
 export const makeDbAddAccount = (): AddAccount => {
