@@ -3,6 +3,8 @@ import { LoadSurveys, SurveyModel } from '../load-surveys-controller-protocols'
 import { noContent, serverError, success } from '@/presentation/helpers/http/http-helper'
 import { throwError } from '@/domain/fixtures'
 import MockDate from 'mockdate'
+import { mockLoadSurveys } from '@/presentation/tests/mocks'
+
 type SutTypes = {
   sut: LoadSurveysController
   loadSurveysStub: LoadSurveys
@@ -29,17 +31,8 @@ const fixturesSurveysModel = (): SurveyModel[] => {
   }]
 }
 
-const makeLoadSurveysStub = (): LoadSurveys => {
-  class LoadSurveysStub implements LoadSurveys {
-    async load (): Promise<SurveyModel[]> {
-      return await new Promise(resolve => resolve(fixturesSurveysModel()))
-    }
-  }
-  return new LoadSurveysStub()
-}
-
 const makeSut = (): SutTypes => {
-  const loadSurveysStub = makeLoadSurveysStub()
+  const loadSurveysStub = mockLoadSurveys()
   const sut = new LoadSurveysController(loadSurveysStub)
   return {
     sut, loadSurveysStub
