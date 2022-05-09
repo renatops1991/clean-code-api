@@ -13,7 +13,7 @@ import {
   forbidden
 } from '@/presentation/helpers/http/http-helper'
 import { throwError } from '@/domain/fixtures'
-import { mockAddAccount, mockAuthentication, mockValidation } from '@/presentation/tests/mocks'
+import { mockAddAccount, mockAuthentication, mockValidation } from '@/presentation/test/mocks'
 
 type SutTypes = {
   sut: SignUpController

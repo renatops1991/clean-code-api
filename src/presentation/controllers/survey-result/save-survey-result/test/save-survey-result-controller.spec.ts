@@ -8,8 +8,8 @@ import {
 } from '../save-survey-result-protocols'
 import { throwError } from '@/domain/fixtures'
 import MockDate from 'mockdate'
-import { mockLoadSurveyById, mockSurveyResult } from '@/presentation/tests/mocks'
-import { fixtureSaveSurveyResult } from '@/presentation/tests/fixtures'
+import { mockLoadSurveyById, mockSurveyResult } from '@/presentation/test/mocks'
+import { fixtureSaveSurveyResult } from '@/presentation/test/fixtures'
 
 const fixturesRequest = (): HttpRequest => ({
   params: {
