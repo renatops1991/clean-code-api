@@ -6,7 +6,7 @@ import {
 } from '../add-survey-controller-protocols'
 import { AddSurveyController } from '../add-survey-controller'
 import { badRequest, serverError, noContent } from '@/presentation/helpers/http/http-helper'
-import { throwError } from '@/domain/mocks'
+import { throwError } from '@/domain/fixtures'
 import MockDate from 'mockdate'
 
 type SutTypes = {

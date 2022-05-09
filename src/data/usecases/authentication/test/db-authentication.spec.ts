@@ -5,7 +5,7 @@ import {
   Encrypted,
   UpdateAccessTokenRepository
 } from '../db-authentication-protocols'
-import { throwError, fixturesAuthentication } from '@/domain/mocks'
+import { throwError, fixturesAuthentication } from '@/domain/fixtures'
 import {
   mockHashComparer,
   mockEncrypted,

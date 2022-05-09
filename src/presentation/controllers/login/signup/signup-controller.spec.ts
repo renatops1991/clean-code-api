@@ -15,7 +15,7 @@ import {
   serverError,
   forbidden
 } from '@/presentation/helpers/http/http-helper'
-import { fixturesAccountModel, throwError } from '@/domain/mocks'
+import { fixturesAccountModel, throwError } from '@/domain/fixtures'
 
 type SutTypes = {
   sut: SignUpController

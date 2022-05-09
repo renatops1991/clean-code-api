@@ -5,7 +5,7 @@ import {
   LoadAccountByEmailRepository
 } from '../db-account-protocols'
 import { DbAddAccount } from '../db-add-account'
-import { fixturesAccountModel, fixturesAddAccountParams, throwError } from '@/domain/mocks'
+import { fixturesAccountModel, fixturesAddAccountParams, throwError } from '@/domain/fixtures'
 import { mockHashed, mockAddAccountRepository } from '@/data/mocks'
 
 type SutTypes = {
@@ -41,7 +41,7 @@ describe('DbAddAccount UseCase', () => {
     const { sut, hashStub } = makeSut()
     const encryptSpy = jest.spyOn(hashStub, 'hash')
     await sut.add(fixturesAddAccountParams())
-    expect(encryptSpy).toHaveBeenLastCalledWith('hash Password')
+    expect(encryptSpy).toHaveBeenLastCalledWith('hashPassword')
   })
   it('Should pass the exception if Hashed throws', async () => {
     const { sut, hashStub } = makeSut()

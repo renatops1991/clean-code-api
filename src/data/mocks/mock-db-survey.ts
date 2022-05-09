@@ -1,5 +1,5 @@
 import { AddSurveyParams, AddSurveyRepository, LoadSurveyByIdRepository, LoadSurveysRepository } from '@/data/usecases/survey/db-survey-protocols'
-import { fixturesSurveyModel, fixturesSurveysModel } from '@/domain/mocks'
+import { fixturesSurveyModel, fixturesSurveysModel } from '@/domain/fixtures'
 import { SurveyModel } from '@/domain/models/survey'
 
 export const mockAddSurveyRepository = (): AddSurveyRepository => {

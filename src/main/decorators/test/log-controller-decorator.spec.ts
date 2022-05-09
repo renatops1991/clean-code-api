@@ -3,7 +3,7 @@ import { LogControllerDecorator } from '../log-controller-decorator'
 import { LogErrorRepository } from '@/data/protocols/db/log/log-error-repository'
 import { serverError, success } from '@/presentation/helpers/http/http-helper'
 import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
-import { fixturesAccountModel } from '@/domain/mocks'
+import { fixturesAccountModel } from '@/domain/fixtures'
 import { mockLogErrorRepository } from '@/data/mocks'
 
 type SutTypes = {

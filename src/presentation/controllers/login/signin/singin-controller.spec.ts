@@ -6,7 +6,7 @@ import {
   AuthenticationParams
 } from './singin-controller-protocols'
 import { badRequest, serverError, success, unauthorized } from '@/presentation/helpers/http/http-helper'
-import { throwError } from '@/domain/mocks'
+import { throwError } from '@/domain/fixtures'
 import { MissingParamError } from '@/presentation/errors'
 
 const makeAuthentication = (): Authentication => {

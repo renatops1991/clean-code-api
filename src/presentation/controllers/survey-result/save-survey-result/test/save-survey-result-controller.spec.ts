@@ -9,7 +9,7 @@ import {
   SaveSurveyResult,
   SaveSurveyResultParams
 } from '../save-survey-result-protocols'
-import { throwError, fixturesSurveyModel } from '@/domain/mocks'
+import { throwError, fixturesSurveyModel } from '@/domain/fixtures'
 import MockDate from 'mockdate'
 
 const makeFakeRequest = (): HttpRequest => ({

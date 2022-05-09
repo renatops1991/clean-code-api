@@ -2,7 +2,7 @@ import { AuthMiddleware } from '../auth-middleware'
 import { LoadAccountByToken, AccountModel, HttpRequest } from '../auth-middleware-protocols'
 import { forbidden, serverError, success } from '@/presentation/helpers/http/http-helper'
 import { AccessDeniedError } from '@/presentation/errors'
-import { fixturesAccountModel } from '@/domain/mocks'
+import { fixturesAccountModel } from '@/domain/fixtures'
 
 type SutTypes = {
   sut: AuthMiddleware
