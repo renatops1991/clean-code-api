@@ -6,7 +6,7 @@ import { LoadAccountByToken } from '@/presentation/middlewares/auth-middleware-p
 export const mockAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
     async add (account: AddAccountParams): Promise<AccountModel> {
-      return await new Promise(resolve => resolve(fixturesAccountModel()))
+      return await Promise.resolve(fixturesAccountModel())
     }
   }
   return new AddAccountStub()
@@ -15,7 +15,7 @@ export const mockAddAccount = (): AddAccount => {
 export const mockLoadAccountByToken = (): LoadAccountByToken => {
   class LoadAccountByTokenStub implements LoadAccountByToken {
     async load (accessToken: string, role?: string): Promise<AccountModel> {
-      return await new Promise(resolve => resolve(fixturesAccountModel()))
+      return await Promise.resolve(fixturesAccountModel())
     }
   }
   return new LoadAccountByTokenStub()

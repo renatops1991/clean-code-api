@@ -3,7 +3,7 @@ import { AddSurvey, AddSurveyParams } from '@/presentation/controllers/survey/ad
 export const mockSurvey = (): AddSurvey => {
   class AddSurveyStub implements AddSurvey {
     async add (data: AddSurveyParams): Promise<void> {
-      return await new Promise(resolve => resolve())
+      return await Promise.resolve()
     }
   }
 

@@ -5,7 +5,7 @@ import { fixtureSaveSurveyResult } from '../fixtures'
 export const mockSurveyResult = (): SaveSurveyResult => {
   class SaveSurveyResultStub implements SaveSurveyResult {
     async save (data: SaveSurveyResultParams): Promise<SurveyResultModel> {
-      return await new Promise(resolve => resolve(fixtureSaveSurveyResult()))
+      return await Promise.resolve(fixtureSaveSurveyResult())
     }
   }
   return new SaveSurveyResultStub()
