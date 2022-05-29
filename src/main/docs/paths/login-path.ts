@@ -23,7 +23,16 @@ export const loginPath = {
         }
       },
       400: {
-        description: 'Bad Request'
+        $ref: '#/components/badRequest'
+      },
+      401: {
+        $ref: '#/components/unauthorized'
+      },
+      404: {
+        $ref: '#/components/notFound'
+      },
+      500: {
+        $ref: '#/components/serverError'
       }
     }
   }
