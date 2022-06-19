@@ -1,8 +1,21 @@
-export const saveSurveyParamsSchema = {
+export const surveyResultSchema = {
   type: 'object',
   properties: {
-    answer: {
+    surveyId: {
+      type: 'string'
+    },
+    question: {
+      type: 'string'
+    },
+    answers: {
+      type: 'array',
+      items: {
+        $ref: '#/schemas/surveyAnswerResult'
+      }
+    },
+    createdAt: {
       type: 'string'
     }
-  }
+  },
+  required: ['surveyId', 'question', 'answers', 'createdAt']
 }
