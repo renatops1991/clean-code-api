@@ -1,9 +1,13 @@
 import { SurveyResultModel } from '@/domain/models/survey-result'
 
 export const fixtureSaveSurveyResult = (): SurveyResultModel => ({
-  id: 'bar',
   surveyId: 'bar',
-  accountId: 'bar',
+  question: 'bar',
   createdAt: new Date(),
-  answer: 'bar'
+  answers: [{
+    image: 'image/foo.jpg',
+    answer: 'bar',
+    count: 1,
+    percent: 50
+  }]
 })

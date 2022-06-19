@@ -8,6 +8,14 @@ export const fixturesSurveyResultParams = (): SaveSurveyResultParams => ({
   createdAt: new Date()
 })
 
-export const fixturesSurveyResultModel = (): SurveyResultModel => Object.assign({}, fixturesSurveyResultParams(), {
-  id: 'foo'
+export const fixturesSurveyResultModel = (): SurveyResultModel => ({
+  surveyId: 'bar',
+  question: 'bar',
+  createdAt: new Date(),
+  answers: [{
+    image: 'image/foo.jpg',
+    answer: 'bar',
+    count: 1,
+    percent: 50
+  }]
 })
