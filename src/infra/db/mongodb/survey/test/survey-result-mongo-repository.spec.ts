@@ -77,6 +77,8 @@ describe('SurveyResultMongoRepository', () => {
       expect(expectedSurveyResult.surveyId).toEqual(survey.id)
       expect(expectedSurveyResult.answers[0].count).toBe(1)
       expect(expectedSurveyResult.answers[0].percent).toBe(100)
+      expect(expectedSurveyResult.answers[1].count).toBe(0)
+      expect(expectedSurveyResult.answers[1].percent).toBe(0)
     })
 
     it('Should update survey result if its not new', async () => {
@@ -101,6 +103,8 @@ describe('SurveyResultMongoRepository', () => {
       expect(updateSurveyResult.answers[0].answer).toEqual(survey.answers[1].answer)
       expect(updateSurveyResult.answers[0].count).toBe(1)
       expect(updateSurveyResult.answers[0].percent).toBe(100)
+      expect(updateSurveyResult.answers[1].count).toBe(0)
+      expect(updateSurveyResult.answers[1].percent).toBe(0)
     })
   })
 })
