@@ -9,13 +9,13 @@ export const fixturesSurveyResultParams = (): SaveSurveyResultParams => ({
 })
 
 export const fixturesSurveyResultModel = (): SurveyResultModel => ({
-  surveyId: 'bar',
-  question: 'bar',
+  surveyId: 'foo',
+  question: 'foo?',
   createdAt: new Date(),
   answers: [{
-    image: 'image/foo.jpg',
+    image: 'images/foo.png',
     answer: 'bar',
-    count: 1,
-    percent: 50
+    count: 0,
+    percent: 0
   }]
 })
