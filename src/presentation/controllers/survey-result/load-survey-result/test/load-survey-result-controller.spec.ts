@@ -1,6 +1,6 @@
-import { throwError } from '@/domain/fixtures'
+import { fixturesSurveyResultModel, throwError } from '@/domain/fixtures'
 import { InvalidParamError } from '@/presentation/errors'
-import { forbidden, serverError } from '@/presentation/helpers/http/http-helper'
+import { forbidden, serverError, success } from '@/presentation/helpers/http/http-helper'
 import {
   mockLoadSurveyById,
   mockLoadSurveyResult
@@ -11,6 +11,7 @@ import {
   LoadSurveyById,
   LoadSurveyResult
 } from '../load-survey-result-protocols'
+import MockDate from 'mockdate'
 
 const fixturesRequest = (): HttpRequest => ({
   params: {
@@ -39,6 +40,13 @@ const makeSut = (): SutTypes => {
 }
 
 describe('LoadSurveyResultController', () => {
+  beforeAll(() => {
+    MockDate.set(new Date())
+  })
+
+  afterAll(() => {
+    MockDate.reset()
+  })
   it('Should call LoadSurveyById with correct value', async () => {
     const { sut, loadSurveyByIdStub } = makeSut()
     const loadByIdSpy = jest.spyOn(loadSurveyByIdStub, 'loadById')
@@ -76,5 +84,10 @@ describe('LoadSurveyResultController', () => {
       .mockImplementationOnce(throwError)
     const expectedResponse = await sut.handle(fixturesRequest())
     expect(expectedResponse).toEqual(serverError(new Error()))
+  })
+  it('Should return 200 on success', async () => {
+    const { sut } = makeSut()
+    const expectedSurveyResult = await sut.handle(fixturesRequest())
+    expect(expectedSurveyResult).toEqual(success(fixturesSurveyResultModel()))
   })
 })
