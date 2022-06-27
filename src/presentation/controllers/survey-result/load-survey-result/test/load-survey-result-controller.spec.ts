@@ -69,4 +69,12 @@ describe('LoadSurveyResultController', () => {
     await sut.handle(fixturesRequest())
     expect(loadSpy).toHaveBeenCalledWith('foo')
   })
+  it('Should return 500 if LoadSurveyResult throws error', async () => {
+    const { sut, loadSurveyResultStub } = makeSut()
+    jest
+      .spyOn(loadSurveyResultStub, 'load')
+      .mockImplementationOnce(throwError)
+    const expectedResponse = await sut.handle(fixturesRequest())
+    expect(expectedResponse).toEqual(serverError(new Error()))
+  })
 })
