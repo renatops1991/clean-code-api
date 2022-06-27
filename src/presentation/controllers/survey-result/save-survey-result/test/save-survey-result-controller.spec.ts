@@ -6,10 +6,9 @@ import {
   LoadSurveyById,
   SaveSurveyResult
 } from '../save-survey-result-protocols'
-import { throwError } from '@/domain/fixtures'
+import { fixturesSurveyResultModel, throwError } from '@/domain/fixtures'
 import MockDate from 'mockdate'
-import { mockLoadSurveyById, mockSurveyResult } from '@/presentation/test/mocks'
-import { fixtureSaveSurveyResult } from '@/presentation/test/fixtures'
+import { mockLoadSurveyById, mockSaveSurveyResult } from '@/presentation/test/mocks'
 
 const fixturesRequest = (): HttpRequest => ({
   params: {
@@ -29,7 +28,7 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const loadSurveyByIdStub = mockLoadSurveyById()
-  const saveSurveyResultStub = mockSurveyResult()
+  const saveSurveyResultStub = mockSaveSurveyResult()
   const sut = new SaveSurveyResultController(loadSurveyByIdStub, saveSurveyResultStub)
   return {
     sut,
@@ -96,6 +95,6 @@ describe('SaveSurveyResult Controller', () => {
   it('Should return 200 on a success', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(fixturesRequest())
-    expect(httpResponse).toEqual(success(fixtureSaveSurveyResult()))
+    expect(httpResponse).toEqual(success(fixturesSurveyResultModel()))
   })
 })
