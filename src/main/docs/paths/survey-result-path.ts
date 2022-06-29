@@ -43,5 +43,41 @@ export const surveyResultPath = {
         $ref: '#/components/serverError'
       }
     }
+  },
+  get: {
+    security: [{
+      apiKeyAuth: []
+    }],
+    tags: ['Survey'],
+    summary: 'Find survey results',
+    parameters: [{
+      in: 'path',
+      name: 'surveyId',
+      required: true,
+      schema: {
+        type: 'string'
+      }
+    }],
+    responses: {
+      200: {
+        description: 'Successfully',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: '#/schemas/surveyResult'
+            }
+          }
+        }
+      },
+      403: {
+        $ref: '#/components/forbidden'
+      },
+      404: {
+        $ref: '#/components/notFound'
+      },
+      500: {
+        $ref: '#/components/serverError'
+      }
+    }
   }
 }
