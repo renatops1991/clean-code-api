@@ -55,13 +55,13 @@ describe('SaveSurveyResult Controller', () => {
     const { sut, loadSurveyByIdStub } = makeSut()
     jest.spyOn(loadSurveyByIdStub, 'loadById').mockReturnValueOnce(Promise.resolve(null))
     const httpResponse = await sut.handle(fixturesRequest())
-    expect(httpResponse).toEqual(forbidden(new InvalidParamError('surveyId')))
+    expect(httpResponse).toStrictEqual(forbidden(new InvalidParamError('surveyId')))
   })
   it('Should return 500 if LoadSurveyById throws exception', async () => {
     const { sut, loadSurveyByIdStub } = makeSut()
     jest.spyOn(loadSurveyByIdStub, 'loadById').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(fixturesRequest())
-    expect(httpResponse).toEqual(serverError(new Error()))
+    expect(httpResponse).toStrictEqual(serverError(new Error()))
   })
   it('Should return 403 if an invalid answer is provided', async () => {
     const { sut } = makeSut()
@@ -73,7 +73,7 @@ describe('SaveSurveyResult Controller', () => {
         answer: 'foo'
       }
     })
-    expect(httpResponse).toEqual(forbidden(new InvalidParamError('answer')))
+    expect(httpResponse).toStrictEqual(forbidden(new InvalidParamError('answer')))
   })
   it('Should call SaveSurveyResult with correct values', async () => {
     const { sut, saveSurveyResultStub } = makeSut()
@@ -90,11 +90,11 @@ describe('SaveSurveyResult Controller', () => {
     const { sut, saveSurveyResultStub } = makeSut()
     jest.spyOn(saveSurveyResultStub, 'save').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(fixturesRequest())
-    expect(httpResponse).toEqual(serverError(new Error()))
+    expect(httpResponse).toStrictEqual(serverError(new Error()))
   })
   it('Should return 200 on a success', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(fixturesRequest())
-    expect(httpResponse).toEqual(success(fixturesSurveyResultModel()))
+    expect(httpResponse).toStrictEqual(success(fixturesSurveyResultModel()))
   })
 })

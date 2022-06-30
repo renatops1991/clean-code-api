@@ -55,7 +55,7 @@ describe('AddSurvey Controller', () => {
     const { sut, validationStub } = makeSut()
     jest.spyOn(validationStub, 'validate').mockReturnValue(new Error())
     const expectedResponse = await sut.handle(fixturesRequest())
-    expect(expectedResponse).toEqual(badRequest(new Error()))
+    expect(expectedResponse).toStrictEqual(badRequest(new Error()))
   })
   it('Should call AddSurvey with correct values', async () => {
     const { sut, addSurveyStub } = makeSut()
@@ -69,7 +69,7 @@ describe('AddSurvey Controller', () => {
     jest.spyOn(addSurveyStub, 'add')
       .mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(fixturesRequest())
-    expect(httpResponse).toEqual(serverError(new Error()))
+    expect(httpResponse).toStrictEqual(serverError(new Error()))
   })
   it('Should return 204 on success', async () => {
     const { sut } = makeSut()

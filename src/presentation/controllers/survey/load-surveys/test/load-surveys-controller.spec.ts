@@ -68,6 +68,6 @@ describe('LoadSurveys Controller', () => {
     const { sut, loadSurveysStub } = makeSut()
     jest.spyOn(loadSurveysStub, 'load').mockImplementationOnce(throwError)
     const expectedErrorResponse = await sut.handle({})
-    expect(expectedErrorResponse).toEqual(serverError(new Error()))
+    expect(expectedErrorResponse).toStrictEqual(serverError(new Error()))
   })
 })
