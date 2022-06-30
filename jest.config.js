@@ -4,7 +4,11 @@ module.exports = {
     '<rootDir>/src/**/*.ts',
     '!<rootDir>/src/main/**',
     '!**/mocks/**',
-    '!**/fixtures/**'
+    '!**/fixtures/**',
+    '!<rootDir>/src/**/protocols/**',
+    '!<rootDir>/src/**/**-protocols.ts',
+    '!<rootDir>/src/domain/usecases/**',
+    '!<rootDir>/src/domain/models/**'
   ],
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
