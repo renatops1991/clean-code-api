@@ -31,11 +31,9 @@ describe('Email Validation', () => {
     sut.validate({ email: 'john@foobar.com' })
     expect(isValidSpy).toHaveBeenCalledWith('john@foobar.com')
   })
-  it('Should throw if EmailValidator throws', () => {
-    const { sut, emailValidatorStub } = makeSut()
-    jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(() => {
-      throw new Error()
-    })
-    expect(sut.validate).toThrow()
+  it('Should return null  if EmailValidator no returns an error', () => {
+    const { sut } = makeSut()
+    const expectedValidate = sut.validate({ email: 'john@foobar.com' })
+    expect(expectedValidate).toBeNull()
   })
 })

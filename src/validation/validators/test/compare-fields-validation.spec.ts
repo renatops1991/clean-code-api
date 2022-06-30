@@ -12,13 +12,14 @@ describe('CompareFields Validation', () => {
       passwordConfirmation: 'foo'
     })
     expect(expectedError).toEqual(new InvalidParamError('passwordConfirmation'))
+    expect(expectedError.message).toEqual('Invalid param: passwordConfirmation')
   })
-  it('Should no return error if validation succeeds', () => {
+  it('Should return null if validation succeeds', () => {
     const sut = makeSut()
     const expectedError = sut.validate({
       password: '123',
       passwordConfirmation: '123'
     })
-    expect(expectedError).toBeFalsy()
+    expect(expectedError).toBeNull()
   })
 })

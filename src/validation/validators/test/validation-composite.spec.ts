@@ -24,6 +24,7 @@ describe('Validation Composite', () => {
     jest.spyOn(validationStubs[0], 'validate').mockReturnValueOnce(new MissingParamError('email'))
     const expectedError = sut.validate({ email: 'foo' })
     expect(expectedError).toEqual(new MissingParamError('email'))
+    expect(expectedError.message).toEqual('Missing param: email')
   })
   it('Should return the first error if more then one validation fails', () => {
     const { sut, validationStubs } = makeSut()
@@ -35,6 +36,6 @@ describe('Validation Composite', () => {
   it('Should not return error if validation succeeds', () => {
     const { sut } = makeSut()
     const expectedError = sut.validate({ email: 'foo' })
-    expect(expectedError).toBeFalsy()
+    expect(expectedError).toBeNull()
   })
 })
