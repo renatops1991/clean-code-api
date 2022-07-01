@@ -1,53 +1,90 @@
 [![Build Status](https://app.travis-ci.com/renatops1991/clean-code-api.svg?token=ZnWiximpccuhiNf9ij9f&branch=production)](https://app.travis-ci.com/renatops1991/clean-code-api)
-# Clean code Node API
 
-This API is part of the "NodeJs Rest API using TDD, Clean Architecture and Typescript" training.
+# Clean Code Node API
 
-## routes
-- Create user: `{{host}}/api/signup`
-- Sign in user: `{{host}}/api/login`
+This is an API developed during the course "**Rest API NodeJs using TDD, Clean Architecture and Typescript**" by [Rodrigo Manguinho](https://github.com/rmanguinho/), focusing on the development of a decoupled API using the best practices of TDD, Clean Architecture, DDD and Solid.
+Outside the course, I used some references like [Clean Code TypeScript](https://github.com/vitorfreitas/clean-code-typescript) for better enjoyment and personal development.
+
+## Routes
+
+### Login API
+
+- [POST] - Create user: `{{host}}/api/signup`
+- [POST] - Sign in user: `{{host}}/api/login`
+
+### Survey API
+
+- [POST] - Create Survey `{{host}}/api/survey`
+- [GET] - Search All Surveys `{{host}}/api/surveys`
+
+### Survey Result
+
+- [PUT] - Save Survey Result `{{host}}/api/surveys/{{survey-id}}/results`
+- [GET] - Load Survey Result `{{host}}/api/surveys/{{survey-id}}/results`
+
 ## API Docs
-(In progress...)
+
+`{{host}}/api-docs`
 
 ## Stack
+
 - Node.js + Typescript
 - Express
 - Nodemon
 - Bcrypt
 - JWT(Json Web Token)
 - MongoDB
+- Design Pattern (Composite, Adapter, Builder and Factory)
+- SOLID
+- Clean Architecture
+- DDD
+- TDD
+
 
 ## Docker Local Development
+ - npm run start:dev
 
 ### Installation
+
 ```bash
 cp example.env .env
 npm install
 ```
 
 ## Watching the application
+
 ```bash
 tsc -w
 ```
 
 ## Running the Application
+
 ```bash
-npm run start:dev
+npm run start:dev // using docker
+
+or
+
+npm run build
+npm run start // using node
 ```
+
 <b>Notice: This command is configured with debug in vsCode</b>
 
 ## Stopping the Application
+
 ```bash
-npm run stop:dev
+npm run stop:dev //stop docker
 ```
 
-## Ports is running 
+## Ports is running
+
 - REST: `{{host}}:3003`
 - Debug: `{{host}}:9222`
 
 ## Running Test
+
 ```bash
-# Running test With no coverage
+# Running test without coverage
 npm run test
 
 # Unit test
@@ -56,7 +93,7 @@ npm run test:unit
 # Integration test
 npm run test:Integration
 
-# Running all test
+# Running all test with coverage
 npm run test:ci
 
 ```
