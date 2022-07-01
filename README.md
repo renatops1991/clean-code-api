@@ -17,14 +17,14 @@ Outside the course, I used some references like [Clean Code TypeScript](https://
 - [POST] - Create Survey `{{host}}/api/survey`
 - [GET] - Search All Surveys `{{host}}/api/surveys`
 
-### Survey Result
+### Survey Result API
 
 - [PUT] - Save Survey Result `{{host}}/api/surveys/{{survey-id}}/results`
 - [GET] - Load Survey Result `{{host}}/api/surveys/{{survey-id}}/results`
 
 ## API Docs
 
-`{{host}}/api-docs`
+Swagger: `{{host}}/api-docs`
 
 ## Stack
 
@@ -35,8 +35,8 @@ Outside the course, I used some references like [Clean Code TypeScript](https://
 - JWT(Json Web Token)
 - MongoDB
 - Design Pattern (Composite, Adapter, Builder and Factory)
-- SOLID
 - Clean Architecture
+- SOLID
 - DDD
 - TDD
 
@@ -95,5 +95,8 @@ npm run test:Integration
 
 # Running all test with coverage
 npm run test:ci
+
+# Running all test and show errors
+npm run test:verbose
 
 ```

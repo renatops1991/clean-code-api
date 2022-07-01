@@ -1,22 +1,20 @@
-export const surveyPath = {
-  post: {
+export const surveysPath = {
+  get: {
     security: [{
       apiKeyAuth: []
     }],
     tags: ['Survey'],
-    summary: 'Create survey Api',
-    requestBody: {
-      content: {
-        'application/json': {
-          schema: {
-            $ref: '#/schemas/addSurveyParams'
+    summary: 'Apí that lists all surveys',
+    responses: {
+      200: {
+        description: 'Successfully',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: '#/schemas/surveys'
+            }
           }
         }
-      }
-    },
-    responses: {
-      204: {
-        description: 'Successfully'
       },
       403: {
         $ref: '#/components/forbidden'

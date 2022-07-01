@@ -1,6 +1,7 @@
 import {
   loginPath,
   surveyPath,
+  surveysPath,
   signupPath,
   surveyResultPath
 } from './paths/'
@@ -8,6 +9,7 @@ import {
 export default {
   '/login': loginPath,
   '/signup': signupPath,
-  '/surveys': surveyPath,
+  '/survey': surveyPath,
+  '/surveys': surveysPath,
   '/surveys/{surveyId}/results': surveyResultPath
 }
