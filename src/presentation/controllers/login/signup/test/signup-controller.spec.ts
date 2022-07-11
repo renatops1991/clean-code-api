@@ -66,7 +66,7 @@ describe('SignUp Controller', () => {
   it('Should return 200 if valid data is provided', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(fixturesRequest())
-    expect(httpResponse).toEqual(success({ accessToken: 'authToken' }))
+    expect(httpResponse).toEqual(success({ accessToken: 'authToken', name: 'john foo bar' }))
   })
   it('Should call validation with correct value', async () => {
     const { sut, validationStub } = makeSut()

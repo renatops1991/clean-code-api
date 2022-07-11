@@ -1,9 +1,19 @@
-import { Authentication, AuthenticationParams } from '../../controllers/login/signin/singin-controller-protocols'
+import {
+  Authentication,
+  AuthenticationParams,
+  AuthenticationModel
+} from '../../controllers/login/signin/singin-controller-protocols'
 
 export const mockAuthentication = (): Authentication => {
   class AuthenticationSub implements Authentication {
-    async auth (authentication: AuthenticationParams): Promise<string> {
-      return 'authToken'
+    async auth (
+      authentication: AuthenticationParams
+    ): Promise<AuthenticationModel> {
+      const authenticationModel = {
+        accessToken: 'authToken',
+        name: 'john foo bar'
+      }
+      return authenticationModel
     }
   }
 
