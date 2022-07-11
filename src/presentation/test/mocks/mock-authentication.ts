@@ -2,7 +2,7 @@ import {
   Authentication,
   AuthenticationParams,
   AuthenticationModel
-} from '../../controllers/login/signin/singin-controller-protocols'
+} from '../../controllers/login/signin/signin-controller-protocols'
 
 export const mockAuthentication = (): Authentication => {
   class AuthenticationSub implements Authentication {

@@ -1,4 +1,4 @@
-import { Validation } from '../../controllers/login/signin/singin-controller-protocols'
+import { Validation } from '../../controllers/login/signin/signin-controller-protocols'
 
 export const mockValidation = (): Validation => {
   class ValidationStub implements Validation {

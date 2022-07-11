@@ -1,9 +1,9 @@
-import { LoginController } from '../singin-controller'
+import { LoginController } from '../signin-controller'
 import {
   HttpRequest,
   Authentication,
   Validation
-} from '../singin-controller-protocols'
+} from '../signin-controller-protocols'
 import { badRequest, serverError, success, unauthorized } from '@/presentation/helpers/http/http-helper'
 import { throwError } from '@/domain/fixtures'
 import { MissingParamError } from '@/presentation/errors'
