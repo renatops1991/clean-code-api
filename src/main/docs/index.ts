@@ -14,7 +14,8 @@ export default {
   },
   servers: [
     {
-      url: ['https', 'http']
+      url: '/api',
+      description: 'Main Server'
     }
   ],
   tags: [
