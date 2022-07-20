@@ -1,41 +1,33 @@
 import { LoadSurveysController } from '../load-surveys-contoller'
-import { LoadSurveys, SurveyModel } from '../load-surveys-controller-protocols'
-import { noContent, serverError, success } from '@/presentation/helpers/http/http-helper'
-import { throwError } from '@/domain/fixtures'
-import MockDate from 'mockdate'
+import {
+  LoadSurveys,
+  HttpRequest
+} from '../load-surveys-controller-protocols'
+import {
+  noContent,
+  serverError,
+  success
+} from '@/presentation/helpers/http/http-helper'
+import { fixturesSurveysModel, throwError } from '@/domain/fixtures'
 import { mockLoadSurveys } from '@/presentation/test/mocks'
+import { faker } from '@faker-js/faker'
+import MockDate from 'mockdate'
+
+const makeFakeRequest = (): HttpRequest => ({
+  accountId: faker.datatype.uuid()
+})
 
 type SutTypes = {
   sut: LoadSurveysController
   loadSurveysStub: LoadSurveys
 }
 
-const fixturesSurveysModel = (): SurveyModel[] => {
-  return [{
-    id: 'foo',
-    question: 'foo?',
-    answers: [{
-      answer: 'bar',
-      image: 'images/foo.png'
-    }],
-    createdAt: new Date()
-  },
-  {
-    id: 'bar',
-    question: 'bar?',
-    answers: [{
-      answer: 'foo',
-      image: 'images/bar.png'
-    }],
-    createdAt: new Date()
-  }]
-}
-
 const makeSut = (): SutTypes => {
   const loadSurveysStub = mockLoadSurveys()
   const sut = new LoadSurveysController(loadSurveysStub)
   return {
-    sut, loadSurveysStub
+    sut,
+    loadSurveysStub
   }
 }
 describe('LoadSurveys Controller', () => {
@@ -47,15 +39,16 @@ describe('LoadSurveys Controller', () => {
     MockDate.reset()
   })
 
-  it('Should call LoadSurveys', async () => {
+  it('Should call LoadSurveys with correct values', async () => {
     const { sut, loadSurveysStub } = makeSut()
-    const loadSpy = jest.spyOn(loadSurveysStub, 'load')
-    await sut.handle({})
-    expect(loadSpy).toHaveBeenCalled()
+    const httpRequest = makeFakeRequest()
+    const loadSurveysSpy = jest.spyOn(loadSurveysStub, 'load')
+    await sut.handle(httpRequest)
+    expect(loadSurveysSpy).toHaveBeenCalledWith(httpRequest.accountId)
   })
   it('Should return 200 on success', async () => {
     const { sut } = makeSut()
-    const expectedSurveys = await sut.handle({})
+    const expectedSurveys = await sut.handle(makeFakeRequest())
     expect(expectedSurveys).toEqual(success(fixturesSurveysModel()))
   })
   it('Should return 204 if LoadSurveys returns empty', async () => {
@@ -67,7 +60,7 @@ describe('LoadSurveys Controller', () => {
   it('Should return 500 if LoadSurveys throws exception', async () => {
     const { sut, loadSurveysStub } = makeSut()
     jest.spyOn(loadSurveysStub, 'load').mockImplementationOnce(throwError)
-    const expectedErrorResponse = await sut.handle({})
+    const expectedErrorResponse = await sut.handle(makeFakeRequest())
     expect(expectedErrorResponse).toStrictEqual(serverError(new Error()))
   })
 })

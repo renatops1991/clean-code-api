@@ -3,6 +3,7 @@ import { LoadSurveysRepository } from '../db-survey-protocols'
 import { throwError, fixturesSurveysModel } from '@/domain/fixtures'
 import { mockLoadSurveysRepository } from '@/data/mocks'
 import MockDate from 'mockdate'
+import { faker } from '@faker-js/faker'
 
 type SutTypes = {
   sut: DbLoadSurveys
@@ -26,18 +27,19 @@ describe('DbLoadSurveys', () => {
   it('Should call LoadSurveysRepository', async () => {
     const { sut, loadSurveysRepositoryStub } = makeSut()
     const loadAllSpy = jest.spyOn(loadSurveysRepositoryStub, 'loadAll')
-    await sut.load()
-    expect(loadAllSpy).toHaveBeenCalled()
+    const accountId = faker.datatype.uuid()
+    await sut.load(accountId)
+    expect(loadAllSpy).toHaveBeenCalledWith(accountId)
   })
   it('Should return a list of Surveys on success', async () => {
     const { sut } = makeSut()
-    const expectedListSurveys = await sut.load()
+    const expectedListSurveys = await sut.load(faker.datatype.uuid())
     expect(expectedListSurveys).toEqual(fixturesSurveysModel())
   })
   it('Should throws if LoadSurveysRepository throws exception', async () => {
     const { sut, loadSurveysRepositoryStub } = makeSut()
     jest.spyOn(loadSurveysRepositoryStub, 'loadAll').mockImplementationOnce(throwError)
-    const expectedResponse = sut.load()
+    const expectedResponse = sut.load(faker.datatype.uuid())
     await expect(expectedResponse).rejects.toThrow()
   })
 })

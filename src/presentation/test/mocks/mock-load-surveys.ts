@@ -4,7 +4,9 @@ import { LoadSurveys, SurveyModel } from '@/presentation/controllers/survey/load
 
 export const mockLoadSurveys = (): LoadSurveys => {
   class LoadSurveysStub implements LoadSurveys {
-    async load (): Promise<SurveyModel[]> {
+    accountId: string
+    async load (accountId: string): Promise<SurveyModel[]> {
+      this.accountId = accountId
       return await Promise.resolve(fixturesSurveysModel())
     }
   }
