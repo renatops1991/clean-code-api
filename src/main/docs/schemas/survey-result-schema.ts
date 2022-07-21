@@ -10,7 +10,7 @@ export const surveyResultSchema = {
     answers: {
       type: 'array',
       items: {
-        $ref: '#/schemas/surveyAnswerResult'
+        $ref: '#/schemas/surveyResultAnswer'
       }
     },
     createdAt: {
