@@ -16,6 +16,7 @@ export const fixturesSurveyResultModel = (): SurveyResultModel => ({
     image: 'images/foo.png',
     answer: 'bar',
     count: 0,
-    percent: 0
+    percent: 0,
+    isCurrentAccountAnswer: false
   }]
 })

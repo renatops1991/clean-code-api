@@ -123,6 +123,7 @@ describe('SurveyResultMongoRepository', () => {
     it('Should load survey result', async () => {
       const survey = await makeSurvey()
       const account = await makeFakeAccount()
+      const otherAccount = await makeFakeAccount()
       await surveyResultCollection.insertMany([
         {
           surveyId: new ObjectId(survey.id),
@@ -147,20 +148,37 @@ describe('SurveyResultMongoRepository', () => {
           accountId: new ObjectId(account.id),
           answer: survey.answers[0].answer,
           createdAt: new Date()
+        },
+        {
+          surveyId: new ObjectId(survey.id),
+          accountId: new ObjectId(otherAccount.id),
+          answer: survey.answers[0].answer,
+          createdAt: new Date()
         }
       ])
 
       const sut = makeSut()
-      const expectedResult = await sut.loadBySurveyId(survey.id)
+      const expectedResult = await sut.loadBySurveyId(survey.id, account.id)
 
       expect(expectedResult).toBeTruthy()
       expect(expectedResult.surveyId).toEqual(survey.id)
-      expect(expectedResult.answers[0].count).toBe(2)
-      expect(expectedResult.answers[0].percent).toBe(50)
+      expect(expectedResult.answers[0].count).toBe(3)
+      expect(expectedResult.answers[0].percent).toBe(60)
+      expect(expectedResult.answers[0].isCurrentAccountAnswer).toBeTruthy()
       expect(expectedResult.answers[1].count).toBe(2)
-      expect(expectedResult.answers[1].percent).toBe(50)
+      expect(expectedResult.answers[1].percent).toBe(40)
+      expect(expectedResult.answers[1].isCurrentAccountAnswer).toBeTruthy()
       expect(expectedResult.answers[2].count).toBe(0)
       expect(expectedResult.answers[2].percent).toBe(0)
+      expect(expectedResult.answers[2].isCurrentAccountAnswer).toBeFalsy()
+    })
+
+    it('Should return null if there is no survey result', async () => {
+      const survey = await makeSurvey()
+      const account = await makeFakeAccount()
+      const sut = makeSut()
+      const expectedSurveyResult = await sut.loadBySurveyId(survey.id, account.id)
+      expect(expectedSurveyResult).toBeNull()
     })
   })
 })

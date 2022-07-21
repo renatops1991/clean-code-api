@@ -11,11 +11,13 @@ import {
   LoadSurveyById,
   LoadSurveyResult
 } from '../load-survey-result-protocols'
+import { faker } from '@faker-js/faker'
 import MockDate from 'mockdate'
 
 const fixturesRequest = (): HttpRequest => ({
+  accountId: faker.datatype.uuid(),
   params: {
-    surveyId: 'foo'
+    surveyId: faker.datatype.uuid()
   }
 })
 
@@ -50,8 +52,9 @@ describe('LoadSurveyResultController', () => {
   it('Should call LoadSurveyById with correct value', async () => {
     const { sut, loadSurveyByIdStub } = makeSut()
     const loadByIdSpy = jest.spyOn(loadSurveyByIdStub, 'loadById')
-    await sut.handle(fixturesRequest())
-    expect(loadByIdSpy).toHaveBeenCalledWith('foo')
+    const fakeHttpRequest = fixturesRequest()
+    await sut.handle(fakeHttpRequest)
+    expect(loadByIdSpy).toHaveBeenCalledWith(fakeHttpRequest.params.surveyId)
   })
   it('Should  return 403 if LoadSurveyById returns null', async () => {
     const { sut, loadSurveyByIdStub } = makeSut()
@@ -74,8 +77,9 @@ describe('LoadSurveyResultController', () => {
   it('Should call LoadSurveyResult with correct value', async () => {
     const { sut, loadSurveyResultStub } = makeSut()
     const loadSpy = jest.spyOn(loadSurveyResultStub, 'load')
-    await sut.handle(fixturesRequest())
-    expect(loadSpy).toHaveBeenCalledWith('foo')
+    const fakeHttpRequest = fixturesRequest()
+    await sut.handle(fakeHttpRequest)
+    expect(loadSpy).toHaveBeenCalledWith(fakeHttpRequest.params.surveyId, fakeHttpRequest.accountId)
   })
   it('Should return 500 if LoadSurveyResult throws error', async () => {
     const { sut, loadSurveyResultStub } = makeSut()
