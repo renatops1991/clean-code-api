@@ -16,7 +16,7 @@ module.exports = {
   testEnvironment: 'node',
   preset: '@shelf/jest-mongodb',
   transform: {
-    '^.+\\.ts?$': '@swc/jest'
+    '^.+\\.ts?$': ['@swc/jest']
   },
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1'
