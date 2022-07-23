@@ -24,3 +24,20 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+  unit-tests:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout dependencies
+        uses: actions/checkout@v3
+
+      - name: Restore dependencies
+        uses: actions/restore@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os}}-${{ hasFiles('**/package.json') }}
+
+      - name: Run unit tests
+        run: npm run test:unit
