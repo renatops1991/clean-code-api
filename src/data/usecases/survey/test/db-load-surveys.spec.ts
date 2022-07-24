@@ -1,7 +1,7 @@
 import { DbLoadSurveys } from '../db-load-surveys'
 import { LoadSurveysRepository } from '../db-survey-protocols'
 import { throwError, fixturesSurveysModel } from '@/domain/fixtures'
-import { mockLoadSurveysRepository } from '@/data/mocks'
+import { mockLoadSurveysRepository } from '@/../tests/data/mocks'
 import MockDate from 'mockdate'
 import { faker } from '@faker-js/faker'
 

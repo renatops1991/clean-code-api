@@ -5,7 +5,7 @@ import {
 } from '../db-account-protocols'
 import { DbAddAccount } from '../db-add-account'
 import { fixturesAccountModel, fixturesAddAccountParams, throwError } from '@/domain/fixtures'
-import { mockHashed, mockAddAccountRepository, mockLoadAccountByEmailRepository } from '@/data/mocks'
+import { mockHashed, mockAddAccountRepository, mockLoadAccountByEmailRepository } from '@/../tests/data/mocks'
 
 type SutTypes = {
   sut: DbAddAccount

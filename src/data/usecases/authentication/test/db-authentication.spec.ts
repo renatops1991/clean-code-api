@@ -11,7 +11,7 @@ import {
   mockEncrypted,
   mockLoadAccountByEmailRepository,
   mockUpdateAccessTokenRepository
-} from '@/data/mocks'
+} from '@/../tests/data/mocks'
 
 type SutTypes = {
   sut: DbAuthentication

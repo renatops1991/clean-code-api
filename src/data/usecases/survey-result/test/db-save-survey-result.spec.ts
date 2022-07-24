@@ -1,7 +1,7 @@
 import { DbSaveSurveyResult } from '../db-save-survey-result'
 import { SaveSurveyResultRepository, LoadSurveyResultRepository } from '../db-survey-result-protocols'
 import { throwError, fixturesSurveyResultParams, fixturesSurveyResultModel } from '@/domain/fixtures'
-import { mockLoadSurveyResultRepository, mockSaveSurveyResultRepository } from '@/data/mocks'
+import { mockLoadSurveyResultRepository, mockSaveSurveyResultRepository } from '@/../tests/data/mocks'
 import MockDate from 'mockdate'
 
 type SutTypes = {

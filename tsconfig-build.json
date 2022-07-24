@@ -4,6 +4,7 @@
         "**/*.spec.ts",
         "**/*.test.ts",
         "**/mocks/**",
-        "**/fixtures/**"
+        "**/fixtures/**",
+        "tests"
     ]
 }

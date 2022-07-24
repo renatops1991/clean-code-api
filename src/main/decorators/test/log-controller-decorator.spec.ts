@@ -4,7 +4,7 @@ import { LogErrorRepository } from '@/data/protocols/db/log/log-error-repository
 import { serverError, success } from '@/presentation/helpers/http/http-helper'
 import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
 import { fixturesAccountModel } from '@/domain/fixtures'
-import { mockLogErrorRepository } from '@/data/mocks'
+import { mockLogErrorRepository } from '@/../tests/data/mocks'
 
 type SutTypes = {
   sut: LogControllerDecorator
