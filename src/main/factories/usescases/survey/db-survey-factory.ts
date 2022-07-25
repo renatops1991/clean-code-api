@@ -1,6 +1,4 @@
-import { DbAddSurvey } from '@/data/usecases/survey/db-add-survey'
-import { DbLoadSurveyById } from '@/data/usecases/survey/db-load-survey-by-id'
-import { DbLoadSurveys } from '@/data/usecases/survey/db-load-surveys'
+import { DbAddSurvey, DbLoadSurveyById, DbLoadSurveys } from '@/data/usecases'
 import { AddSurvey } from '@/domain/usecases/survey/add-survey'
 import { LoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
 import { LoadSurveys } from '@/domain/usecases/survey/load-surveys'

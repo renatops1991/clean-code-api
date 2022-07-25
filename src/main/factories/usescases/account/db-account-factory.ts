@@ -1,6 +1,5 @@
 
-import { DbAddAccount } from '@/data/usecases/account/db-add-account'
-import { DbLoadAccountByToken } from '@/data/usecases/account/db-load-account-by-token'
+import { DbAddAccount, DbLoadAccountByToken } from '@/data/usecases'
 import { BcryptAdapter } from '@/infra/cryptography/bcrypt-adapter/bcrypt-adapter'
 import { JwtAdapter } from '@/infra/cryptography/jwt-adapter/jwt-adapter'
 import { AccountMongoRepository } from '@/infra/db/mongodb/account/account-mongo-repository'
