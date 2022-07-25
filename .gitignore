@@ -7,4 +7,5 @@ CleanCodeCompositeValidation.drawio
 .vscode
 data
 !src/data
+!tests/data
 bin
