@@ -1,10 +1,8 @@
-import { MongoHelper, QueryBuilder } from '../helpers'
+import { MongoHelper } from './mongo-helper'
+import { QueryBuilder } from './query-builder'
 import { LoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-repository'
-import {
-  AddSurveyParams,
-  AddSurveyRepository,
-  LoadSurveyByIdRepository
-} from '@/data/usecases/survey/db-survey-protocols'
+import { AddSurveyRepository, LoadSurveyByIdRepository } from '@/data/protocols/db'
+import { AddSurveyParams } from '@/domain/usecases/add-survey'
 import { SurveyModel } from '@/domain/models/survey'
 import { ObjectId } from 'mongodb'
 
@@ -33,17 +31,20 @@ implements
         answers: 1,
         date: 1,
         didAnswer: {
-          $gte: [{
-            $size: {
-              $filter: {
-                input: '$result',
-                as: 'item',
-                cond: {
-                  $eq: ['$$item.accountId', new ObjectId(accountId)]
+          $gte: [
+            {
+              $size: {
+                $filter: {
+                  input: '$result',
+                  as: 'item',
+                  cond: {
+                    $eq: ['$$item.accountId', new ObjectId(accountId)]
+                  }
                 }
               }
-            }
-          }, 1]
+            },
+            1
+          ]
         }
       })
       .build()

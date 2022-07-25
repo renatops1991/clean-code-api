@@ -1,5 +1,4 @@
-import { SurveyMongoRepository } from '../survey-mongo-repository'
-import { MongoHelper } from '../../helpers/mongo-helper'
+import { SurveyMongoRepository, MongoHelper } from '@/infra/db/mongodb'
 import { AccountModel } from '@/domain/models/account'
 import { Collection } from 'mongodb'
 import MockDate from 'mockdate'

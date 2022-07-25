@@ -1,10 +1,8 @@
-import {
-  LoadSurveyResultRepository,
-  SaveSurveyResultParams,
-  SaveSurveyResultRepository,
-  SurveyResultModel
-} from '@/data/usecases/survey-result/db-survey-result-protocols'
-import { MongoHelper, QueryBuilder } from '../helpers'
+import { LoadSurveyResultRepository, SaveSurveyResultRepository } from '@/data/protocols'
+import { SurveyResultModel } from '@/domain/models/survey-result'
+import { SaveSurveyResultParams } from '@/domain/usecases/save-survey-result'
+import { MongoHelper } from './mongo-helper'
+import { QueryBuilder } from './query-builder'
 import { ObjectId } from 'mongodb'
 import round from 'mongo-round'
 

@@ -1,5 +1,5 @@
-import { AccountMongoRepository } from '../account-mongo-repository'
-import { MongoHelper } from '../../helpers/mongo-helper'
+import { AccountMongoRepository } from '@/infra/db/mongodb/account-mongo-repository'
+import { MongoHelper } from '@/infra/db/mongodb/mongo-helper'
 import { Collection } from 'mongodb'
 import { fixturesAddAccountParams } from '@/tests/domain/fixtures/fixtures-account'
 

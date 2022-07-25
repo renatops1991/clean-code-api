@@ -1,8 +1,6 @@
 import { DbAddSurvey, DbLoadSurveyById, DbLoadSurveys } from '@/data/usecases'
-import { AddSurvey } from '@/domain/usecases/survey/add-survey'
-import { LoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
-import { LoadSurveys } from '@/domain/usecases/survey/load-surveys'
-import { SurveyMongoRepository } from '@/infra/db/mongodb/survey/survey-mongo-repository'
+import { AddSurvey, LoadSurveyById, LoadSurveys } from '@/domain/usecases'
+import { SurveyMongoRepository } from '@/infra/db/mongodb/survey-mongo-repository'
 
 export const makeDbAddSurvey = (): AddSurvey => {
   const surveyMongoRepository = new SurveyMongoRepository()
