@@ -1,4 +1,4 @@
-name: Continuous Integration Tasting
+name: Continuous Integration Testing
 
 on:
   pull_request:

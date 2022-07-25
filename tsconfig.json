@@ -11,6 +11,9 @@
         ],
         "baseUrl": "src",
         "paths": {
+            "@/tests/*": [
+                "../tests/*"
+            ],
             "@/*": [
                 "*"
             ]

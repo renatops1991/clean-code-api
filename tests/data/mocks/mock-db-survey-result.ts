@@ -1,5 +1,5 @@
 import { SaveSurveyResultParams, SaveSurveyResultRepository, SurveyResultModel } from '@/data/usecases/survey-result/db-survey-result-protocols'
-import { fixturesSurveyResultModel } from '@/domain/fixtures/fixtures-survey-result'
+import { fixturesSurveyResultModel } from '@/tests/domain/fixtures/fixtures-survey-result'
 import { LoadSurveyResultRepository } from '@/data/protocols/db/survey-result/load-survey-result-repository'
 
 export const mockSaveSurveyResultRepository = (): SaveSurveyResultRepository => {

@@ -1,7 +1,7 @@
 
 import { DbLoadAccountByToken } from '@/data/usecases/db-load-account-by-token'
 import { Decrypted, LoadAccountByTokenRepository } from '@/data/protocols'
-import { fixturesAccountModel, throwError } from '@/domain/fixtures'
+import { fixturesAccountModel, throwError } from '@/tests/domain/fixtures'
 import { mockDecrypted, mockLoadAccountByTokenRepository } from '../mocks'
 
 type SutTypes = {

@@ -1,6 +1,6 @@
 import { DbAddSurvey } from '@/data/usecases/db-add-survey'
 import { AddSurveyRepository } from '@/data/protocols/db/survey/add-survey-repository'
-import { throwError, fixturesSurveyParams } from '@/domain/fixtures'
+import { throwError, fixturesSurveyParams } from '@/tests/domain/fixtures'
 import { mockAddSurveyRepository } from '../mocks'
 import MockDate from 'mockdate'
 

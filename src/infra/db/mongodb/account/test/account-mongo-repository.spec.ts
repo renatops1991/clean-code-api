@@ -1,7 +1,7 @@
 import { AccountMongoRepository } from '../account-mongo-repository'
 import { MongoHelper } from '../../helpers/mongo-helper'
 import { Collection } from 'mongodb'
-import { fixturesAddAccountParams } from '@/domain/fixtures'
+import { fixturesAddAccountParams } from '@/tests/domain/fixtures/fixtures-account'
 
 let accountCollection: Collection
 describe('Account Mongo Repository', () => {

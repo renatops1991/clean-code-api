@@ -1,5 +1,5 @@
 import { SurveyResultModel } from '@/domain/models/survey-result'
-import { SaveSurveyResultParams } from '@/domain/usecases/survey-result/save-survey-result'
+import { SaveSurveyResultParams } from '@/domain/usecases/save-survey-result'
 
 export const fixturesSurveyResultParams = (): SaveSurveyResultParams => ({
   accountId: 'foo',

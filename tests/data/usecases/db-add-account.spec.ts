@@ -1,7 +1,7 @@
 import { DbAddAccount } from '@/data/usecases/db-add-account'
 import { Hashed } from '@/data/protocols/cryptography/hashed'
 import { AddAccountRepository, LoadAccountByEmailRepository } from '@/data/protocols'
-import { fixturesAccountModel, fixturesAddAccountParams, throwError } from '@/domain/fixtures'
+import { fixturesAccountModel, fixturesAddAccountParams, throwError } from '@/tests/domain/fixtures'
 import { mockHashed, mockAddAccountRepository, mockLoadAccountByEmailRepository } from '../mocks'
 
 type SutTypes = {

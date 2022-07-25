@@ -5,7 +5,7 @@ import {
   Encrypted,
   HashComparer
 } from '@/data/protocols'
-import { throwError, fixturesAuthentication } from '@/domain/fixtures'
+import { throwError, fixturesAuthentication } from '@/tests/domain/fixtures'
 import {
   mockHashComparer,
   mockEncrypted,

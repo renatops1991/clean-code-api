@@ -5,7 +5,7 @@ import {
   Validation
 } from '../signin-controller-protocols'
 import { badRequest, serverError, success, unauthorized } from '@/presentation/helpers/http/http-helper'
-import { throwError } from '@/domain/fixtures'
+import { throwError } from '@/tests/domain/fixtures'
 import { MissingParamError } from '@/presentation/errors'
 import { mockAuthentication, mockValidation } from '@/presentation/test/mocks'
 

@@ -4,7 +4,7 @@ import {
   mockLoadSurveyByIdRepository,
   mockLoadSurveyResultRepository
 } from '../mocks'
-import { fixturesSurveyResultModel, throwError } from '@/domain/fixtures'
+import { fixturesSurveyResultModel, throwError } from '@/tests/domain/fixtures'
 import MockDate from 'mockdate'
 import { faker } from '@faker-js/faker'
 

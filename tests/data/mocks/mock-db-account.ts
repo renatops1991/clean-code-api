@@ -6,7 +6,7 @@ import {
   UpdateAccessTokenRepository
 } from '@/data/usecases/account/db-account-protocols'
 import { AccountModel } from '@/domain/models/account'
-import { fixturesAccountModel } from '@/domain/fixtures'
+import { fixturesAccountModel } from '@/tests/domain/fixtures'
 
 export const mockAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {

@@ -6,7 +6,7 @@ import {
   LoadSurveyById,
   SaveSurveyResult
 } from '../save-survey-result-protocols'
-import { fixturesSurveyResultModel, throwError } from '@/domain/fixtures'
+import { fixturesSurveyResultModel, throwError } from '@/tests/domain/fixtures'
 import MockDate from 'mockdate'
 import { mockLoadSurveyById, mockSaveSurveyResult } from '@/presentation/test/mocks'
 

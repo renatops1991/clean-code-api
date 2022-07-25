@@ -1,4 +1,4 @@
-import { fixturesSurveyResultModel, throwError } from '@/domain/fixtures'
+import { fixturesSurveyResultModel, throwError } from '@/tests/domain/fixtures'
 import { InvalidParamError } from '@/presentation/errors'
 import { forbidden, serverError, success } from '@/presentation/helpers/http/http-helper'
 import {

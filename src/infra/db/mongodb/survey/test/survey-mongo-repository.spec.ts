@@ -3,7 +3,7 @@ import { MongoHelper } from '../../helpers/mongo-helper'
 import { AccountModel } from '@/domain/models/account'
 import { Collection } from 'mongodb'
 import MockDate from 'mockdate'
-import { fixturesSurveyParams } from '@/domain/fixtures'
+import { fixturesSurveyParams } from '@/tests/domain/fixtures'
 
 let surveyCollection: Collection
 let surveyResultCollection: Collection

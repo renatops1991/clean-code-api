@@ -1,4 +1,4 @@
-import { fixturesAccountModel } from '@/domain/fixtures'
+import { fixturesAccountModel } from '@/tests/domain/fixtures'
 import { AddAccount, AddAccountParams } from '../../controllers/login/signup/signup-controller-protocols'
 import { AccountModel } from '@/domain/models/account'
 import { LoadAccountByToken } from '@/presentation/middlewares/auth-middleware-protocols'

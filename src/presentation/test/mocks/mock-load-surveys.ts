@@ -1,4 +1,4 @@
-import { fixturesSurveyModel, fixturesSurveysModel } from '@/domain/fixtures'
+import { fixturesSurveyModel, fixturesSurveysModel } from '@/tests/domain/fixtures'
 import { LoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
 import { LoadSurveys, SurveyModel } from '@/presentation/controllers/survey/load-surveys/load-surveys-controller-protocols'
 
