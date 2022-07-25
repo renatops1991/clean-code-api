@@ -12,13 +12,14 @@ module.exports = {
   ],
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
-  roots: ['<rootDir>/src'],
+  roots: ['<rootDir>/src', '<rootDir>/tests'],
   testEnvironment: 'node',
   preset: '@shelf/jest-mongodb',
   transform: {
     '^.+\\.ts?$': ['@swc/jest']
   },
   moduleNameMapper: {
+    '@/tests/(.*)': '<rootDir>/tests/$1',
     '@/(.*)': '<rootDir>/src/$1'
   }
 }

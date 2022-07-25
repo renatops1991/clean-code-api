@@ -1,11 +1,9 @@
-import {
-  AddAccount,
-  AccountModel,
-  AddAccountParams,
-  Hashed,
-  AddAccountRepository,
-  LoadAccountByEmailRepository
-} from './db-account-protocols'
+import { Hashed } from '@/data/protocols/cryptography/hashed'
+import { AddAccountRepository } from '@/data/protocols/db/account/add-account-repository'
+import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/load-account-by-email-repository'
+import { AddAccount, AddAccountParams } from '@/domain/usecases/account/add-account'
+import { AccountModel } from '@/domain/models/account'
+
 export class DbAddAccount implements AddAccount {
   constructor (
     private readonly hashed: Hashed,
