@@ -2,7 +2,6 @@ import {
   Controller,
   HttpRequest,
   HttpResponse,
-  Authentication,
   Validation
 } from './signin-controller-protocols'
 import {
@@ -11,6 +10,7 @@ import {
   success,
   unauthorized
 } from '@/presentation/helpers/http/http-helper'
+import { Authentication } from '@/domain/usecases/authentication'
 
 export class LoginController implements Controller {
   constructor (

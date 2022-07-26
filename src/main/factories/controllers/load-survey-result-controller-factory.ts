@@ -5,6 +5,9 @@ import { Controller } from '@/presentation/protocols'
 import { makeDbLoadSurveyResult } from '@/main/factories/usescases/survey-result/db-load-survey-result'
 
 export const makeLoadSurveyResultController = (): Controller => {
-  const controller = new LoadSurveyResultController(makeDbLoadSurveyById(), makeDbLoadSurveyResult())
+  const controller = new LoadSurveyResultController(
+    makeDbLoadSurveyById(),
+    makeDbLoadSurveyResult()
+  )
   return makeLogControllerDecorator(controller)
 }
