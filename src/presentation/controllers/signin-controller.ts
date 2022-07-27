@@ -3,7 +3,7 @@ import {
   HttpRequest,
   HttpResponse,
   Validation
-} from './signin-controller-protocols'
+} from '@/presentation/protocols'
 import {
   badRequest,
   serverError,
@@ -12,7 +12,7 @@ import {
 } from '@/presentation/helpers/http/http-helper'
 import { Authentication } from '@/domain/usecases/authentication'
 
-export class LoginController implements Controller {
+export class SigninController implements Controller {
   constructor (
     private readonly authentication: Authentication,
     private readonly validation: Validation

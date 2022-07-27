@@ -1,4 +1,4 @@
-import { AddSurvey, AddSurveyParams } from '@/presentation/controllers/survey/add-survey/add-survey-controller-protocols'
+import { AddSurvey, AddSurveyParams } from '@/domain/usecases/add-survey'
 
 export const mockSurvey = (): AddSurvey => {
   class AddSurveyStub implements AddSurvey {

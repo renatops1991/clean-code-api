@@ -2,7 +2,7 @@ import {
   Controller,
   HttpRequest,
   HttpResponse
-} from './save-survey-result-protocols'
+} from '@/presentation/protocols'
 import { InvalidParamError } from '@/presentation/errors'
 import { LoadSurveyById, SaveSurveyResult } from '@/domain/usecases'
 import {

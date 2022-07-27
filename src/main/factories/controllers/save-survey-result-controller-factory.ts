@@ -1,4 +1,4 @@
-import { SaveSurveyResultController } from '@/presentation/controllers/survey-result/save-survey-result/save-survey-result-controller'
+import { SaveSurveyResultController } from '@/presentation/controllers/save-survey-result-controller'
 import { Controller } from '@/presentation/protocols'
 import { makeDbSaveSurveyResult } from '@/main/factories/usescases/survey-result/db-save-survey-result'
 import { makeDbLoadSurveyById } from '@/main/factories/usescases/survey/db-survey-factory'

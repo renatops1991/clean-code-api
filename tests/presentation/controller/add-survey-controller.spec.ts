@@ -1,13 +1,13 @@
 import {
   HttpRequest,
-  Validation,
-  AddSurvey
-} from '../add-survey-controller-protocols'
-import { AddSurveyController } from '../add-survey-controller'
+  Validation
+} from '@/presentation/protocols'
+import { AddSurvey } from '@/domain/usecases/add-survey'
+import { AddSurveyController } from '@/presentation/controllers/add-survey-controller'
 import { badRequest, serverError, noContent } from '@/presentation/helpers/http/http-helper'
 import { throwError } from '@/tests/domain/fixtures'
-import MockDate from 'mockdate'
 import { mockSurvey, mockValidation } from '@/presentation/test/mocks'
+import MockDate from 'mockdate'
 
 type SutTypes = {
   sut: AddSurveyController

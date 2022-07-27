@@ -1,11 +1,8 @@
 import { InvalidParamError } from '@/presentation/errors'
 import { forbidden, serverError, success } from '@/presentation/helpers/http/http-helper'
-import { SaveSurveyResultController } from '../save-survey-result-controller'
-import {
-  HttpRequest,
-  LoadSurveyById,
-  SaveSurveyResult
-} from '../save-survey-result-protocols'
+import { SaveSurveyResultController } from '@/presentation/controllers/save-survey-result-controller'
+import { LoadSurveyById, SaveSurveyResult } from '@/domain/usecases'
+import { HttpRequest } from '@/presentation/protocols/http'
 import { fixturesSurveyResultModel, throwError } from '@/tests/domain/fixtures'
 import MockDate from 'mockdate'
 import { mockLoadSurveyById, mockSaveSurveyResult } from '@/presentation/test/mocks'

@@ -3,7 +3,7 @@ import {
   HttpRequest,
   Controller,
   Validation
-} from './signup-controller-protocols'
+} from '@/presentation/protocols'
 import { EmailInUseError } from '@/presentation/errors'
 import { AddAccount, Authentication } from '@/domain/usecases'
 import {

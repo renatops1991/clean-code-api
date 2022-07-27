@@ -1,10 +1,9 @@
-import { SignUpController } from '../signup-controller'
+import { SignUpController } from '@/presentation/controllers/signup-controller'
 import {
-  AddAccount,
   HttpRequest,
-  Validation,
-  Authentication
-} from '../signup-controller-protocols'
+  Validation
+} from '@/presentation/protocols'
+import { AddAccount, Authentication } from '@/domain/usecases'
 import { EmailInUseError, MissingParamError, ServerError } from '@/presentation/errors'
 import {
   success,

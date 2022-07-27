@@ -1,8 +1,6 @@
-import { LoadSurveysController } from '../load-surveys-contoller'
-import {
-  LoadSurveys,
-  HttpRequest
-} from '../load-surveys-controller-protocols'
+import { LoadSurveysController } from '@/presentation/controllers/load-surveys-controller'
+import { HttpRequest } from '@/presentation/protocols/http'
+import { LoadSurveys } from '@/domain/usecases/load-surveys'
 import {
   noContent,
   serverError,

@@ -1,9 +1,6 @@
-import { LoginController } from '../signin-controller'
-import {
-  HttpRequest,
-  Authentication,
-  Validation
-} from '../signin-controller-protocols'
+import { SigninController } from '@/presentation/controllers/signin-controller'
+import { HttpRequest, Validation } from '@/presentation/protocols'
+import { Authentication } from '@/domain/usecases/authentication'
 import { badRequest, serverError, success, unauthorized } from '@/presentation/helpers/http/http-helper'
 import { throwError } from '@/tests/domain/fixtures'
 import { MissingParamError } from '@/presentation/errors'
@@ -17,7 +14,7 @@ const fixturesRequest = (): HttpRequest => ({
 })
 
 type SutTypes = {
-  sut: LoginController
+  sut: SigninController
   authenticationStub: Authentication
   validationStub: Validation
 }
@@ -25,11 +22,11 @@ type SutTypes = {
 const makeSut = (): SutTypes => {
   const authenticationStub = mockAuthentication()
   const validationStub = mockValidation()
-  const sut = new LoginController(authenticationStub, validationStub)
+  const sut = new SigninController(authenticationStub, validationStub)
   return { sut, authenticationStub, validationStub }
 }
 
-describe('LoginController', () => {
+describe('SigninController', () => {
   it('Should call Authentication with correct values', async () => {
     const { sut, authenticationStub } = makeSut()
     const authSpy = jest.spyOn(authenticationStub, 'auth')

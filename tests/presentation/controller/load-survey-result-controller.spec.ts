@@ -2,15 +2,17 @@ import { fixturesSurveyResultModel, throwError } from '@/tests/domain/fixtures'
 import { InvalidParamError } from '@/presentation/errors'
 import { forbidden, serverError, success } from '@/presentation/helpers/http/http-helper'
 import {
+  LoadSurveyById,
+  LoadSurveyResult
+} from '@/domain/usecases'
+import { LoadSurveyResultController } from '@/presentation/controllers/load-survey-result-controller'
+import {
   mockLoadSurveyById,
   mockLoadSurveyResult
 } from '@/presentation/test/mocks'
-import { LoadSurveyResultController } from '../load-survey-result-controller'
 import {
-  HttpRequest,
-  LoadSurveyById,
-  LoadSurveyResult
-} from '../load-survey-result-protocols'
+  HttpRequest
+} from '@/presentation/protocols/http'
 import { faker } from '@faker-js/faker'
 import MockDate from 'mockdate'
 

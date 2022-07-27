@@ -9,7 +9,7 @@ import {
   Controller,
   HttpRequest,
   HttpResponse
-} from './load-survey-result-protocols'
+} from '@/presentation/protocols'
 
 export class LoadSurveyResultController implements Controller {
   constructor (

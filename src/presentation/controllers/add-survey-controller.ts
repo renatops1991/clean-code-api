@@ -4,7 +4,7 @@ import {
   HttpRequest,
   HttpResponse,
   Validation
-} from './add-survey-controller-protocols'
+} from '@/presentation/protocols'
 import { AddSurvey } from '@/domain/usecases/add-survey'
 
 export class AddSurveyController implements Controller {
