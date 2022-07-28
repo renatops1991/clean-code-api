@@ -1,7 +1,7 @@
 import { fixturesAccountModel } from '@/tests/domain/fixtures'
-import { AddAccount, AddAccountParams } from '../../controllers/login/signup/signup-controller-protocols'
+import { AddAccount, AddAccountParams } from '@/domain/usecases'
 import { AccountModel } from '@/domain/models/account'
-import { LoadAccountByToken } from '@/presentation/middlewares/auth-middleware-protocols'
+import { LoadAccountByToken } from '@/domain/usecases/load-account-by-token'
 
 export const mockAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {

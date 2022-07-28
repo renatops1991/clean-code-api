@@ -7,7 +7,7 @@ import {
   success
 } from '@/presentation/helpers/http-helper'
 import { fixturesSurveysModel, throwError } from '@/tests/domain/fixtures'
-import { mockLoadSurveys } from '@/presentation/test/mocks'
+import { mockLoadSurveys } from '@/tests/presentation/mocks'
 import { faker } from '@faker-js/faker'
 import MockDate from 'mockdate'
 

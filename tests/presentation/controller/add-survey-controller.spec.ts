@@ -6,7 +6,7 @@ import { AddSurvey } from '@/domain/usecases/add-survey'
 import { AddSurveyController } from '@/presentation/controllers/add-survey-controller'
 import { badRequest, serverError, noContent } from '@/presentation/helpers/http-helper'
 import { throwError } from '@/tests/domain/fixtures'
-import { mockSurvey, mockValidation } from '@/presentation/test/mocks'
+import { mockSurvey, mockValidation } from '@/tests/presentation/mocks'
 import MockDate from 'mockdate'
 
 type SutTypes = {

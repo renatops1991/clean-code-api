@@ -9,7 +9,7 @@ import { LoadSurveyResultController } from '@/presentation/controllers/load-surv
 import {
   mockLoadSurveyById,
   mockLoadSurveyResult
-} from '@/presentation/test/mocks'
+} from '@/tests/presentation/mocks'
 import {
   HttpRequest
 } from '@/presentation/protocols/http'

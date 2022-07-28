@@ -1,6 +1,6 @@
 import { fixturesSurveyModel, fixturesSurveysModel } from '@/tests/domain/fixtures'
-import { LoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
-import { LoadSurveys, SurveyModel } from '@/presentation/controllers/survey/load-surveys/load-surveys-controller-protocols'
+import { LoadSurveyById, LoadSurveys } from '@/domain/usecases'
+import { SurveyModel } from '@/domain/models/survey'
 
 export const mockLoadSurveys = (): LoadSurveys => {
   class LoadSurveysStub implements LoadSurveys {

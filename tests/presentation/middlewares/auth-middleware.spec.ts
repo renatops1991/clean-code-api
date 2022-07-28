@@ -1,8 +1,13 @@
-import { AuthMiddleware } from '../auth-middleware'
-import { LoadAccountByToken, HttpRequest } from '../auth-middleware-protocols'
-import { forbidden, serverError, success } from '@/presentation/helpers/http-helper'
+import { AuthMiddleware } from '@/presentation/middlewares/auth-middleware'
+import { LoadAccountByToken } from '@/domain/usecases/load-account-by-token'
+import { HttpRequest } from '@/presentation/protocols'
+import {
+  forbidden,
+  serverError,
+  success
+} from '@/presentation/helpers/http-helper'
 import { AccessDeniedError } from '@/presentation/errors'
-import { mockLoadAccountByToken } from '@/presentation/test/mocks'
+import { mockLoadAccountByToken } from '@/tests/presentation/mocks'
 
 type SutTypes = {
   sut: AuthMiddleware
@@ -37,7 +42,8 @@ describe('AuthMiddleware', () => {
   })
   it('Should return 403 if LoadAccountByToken returns null', async () => {
     const { sut, loadAccountByTokenStub } = makeSut()
-    jest.spyOn(loadAccountByTokenStub, 'load')
+    jest
+      .spyOn(loadAccountByTokenStub, 'load')
       .mockResolvedValueOnce(Promise.resolve(null))
     const expectedResponse = await sut.handle(fixturesRequest())
     expect(expectedResponse).toEqual(forbidden(new AccessDeniedError()))
@@ -49,8 +55,11 @@ describe('AuthMiddleware', () => {
   })
   it('Should return 500 if LoadAccountByToken throws error', async () => {
     const { sut, loadAccountByTokenStub } = makeSut()
-    jest.spyOn(loadAccountByTokenStub, 'load')
-      .mockResolvedValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest
+      .spyOn(loadAccountByTokenStub, 'load')
+      .mockResolvedValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      )
     const expectedResponse = await sut.handle(fixturesRequest())
     expect(expectedResponse).toEqual(serverError(new Error()))
   })

@@ -4,7 +4,7 @@ import { Authentication } from '@/domain/usecases/authentication'
 import { badRequest, serverError, success, unauthorized } from '@/presentation/helpers/http-helper'
 import { throwError } from '@/tests/domain/fixtures'
 import { MissingParamError } from '@/presentation/errors'
-import { mockAuthentication, mockValidation } from '@/presentation/test/mocks'
+import { mockAuthentication, mockValidation } from '@/tests/presentation/mocks'
 
 const fixturesRequest = (): HttpRequest => ({
   body: {

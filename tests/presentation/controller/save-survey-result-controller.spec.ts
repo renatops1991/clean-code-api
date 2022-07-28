@@ -5,7 +5,7 @@ import { LoadSurveyById, SaveSurveyResult } from '@/domain/usecases'
 import { HttpRequest } from '@/presentation/protocols/http'
 import { fixturesSurveyResultModel, throwError } from '@/tests/domain/fixtures'
 import MockDate from 'mockdate'
-import { mockLoadSurveyById, mockSaveSurveyResult } from '@/presentation/test/mocks'
+import { mockLoadSurveyById, mockSaveSurveyResult } from '@/tests/presentation/mocks'
 
 const fixturesRequest = (): HttpRequest => ({
   params: {

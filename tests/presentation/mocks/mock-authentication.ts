@@ -1,8 +1,8 @@
 import {
-  Authentication,
   AuthenticationParams,
-  AuthenticationModel
-} from '../../controllers/login/signin/signin-controller-protocols'
+  Authentication
+} from '@/domain/usecases/authentication'
+import { AuthenticationModel } from '@/domain/models/authentication'
 
 export const mockAuthentication = (): Authentication => {
   class AuthenticationSub implements Authentication {
