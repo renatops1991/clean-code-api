@@ -1,7 +1,7 @@
 import { SigninController } from '@/presentation/controllers/signin-controller'
 import { HttpRequest, Validation } from '@/presentation/protocols'
 import { Authentication } from '@/domain/usecases/authentication'
-import { badRequest, serverError, success, unauthorized } from '@/presentation/helpers/http/http-helper'
+import { badRequest, serverError, success, unauthorized } from '@/presentation/helpers/http-helper'
 import { throwError } from '@/tests/domain/fixtures'
 import { MissingParamError } from '@/presentation/errors'
 import { mockAuthentication, mockValidation } from '@/presentation/test/mocks'

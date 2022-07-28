@@ -4,7 +4,7 @@ import {
   Controller
 } from '@/presentation/protocols'
 import { LoadSurveys } from '@/domain/usecases/load-surveys'
-import { noContent, serverError, success } from '@/presentation/helpers/http/http-helper'
+import { noContent, serverError, success } from '@/presentation/helpers/http-helper'
 
 export class LoadSurveysController implements Controller {
   constructor (private readonly loadSurveys: LoadSurveys) {}

@@ -9,7 +9,7 @@ import {
   serverError,
   success,
   unauthorized
-} from '@/presentation/helpers/http/http-helper'
+} from '@/presentation/helpers/http-helper'
 import { Authentication } from '@/domain/usecases/authentication'
 
 export class SigninController implements Controller {

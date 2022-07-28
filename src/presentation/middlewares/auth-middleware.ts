@@ -5,7 +5,7 @@ import {
   Middleware
 } from './auth-middleware-protocols'
 import { AccessDeniedError } from '@/presentation/errors'
-import { forbidden, serverError, success } from '@/presentation/helpers/http/http-helper'
+import { forbidden, serverError, success } from '@/presentation/helpers/http-helper'
 
 export class AuthMiddleware implements Middleware {
   constructor (

@@ -3,7 +3,7 @@ import {
   forbidden,
   serverError,
   success
-} from '@/presentation/helpers/http/http-helper'
+} from '@/presentation/helpers/http-helper'
 import { LoadSurveyById, LoadSurveyResult } from '@/domain/usecases'
 import {
   Controller,

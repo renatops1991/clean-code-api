@@ -10,7 +10,7 @@ import {
   badRequest,
   serverError,
   forbidden
-} from '@/presentation/helpers/http/http-helper'
+} from '@/presentation/helpers/http-helper'
 import { throwError } from '@/tests/domain/fixtures'
 import { mockAddAccount, mockAuthentication, mockValidation } from '@/presentation/test/mocks'
 
