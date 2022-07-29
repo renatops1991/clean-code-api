@@ -1,6 +1,5 @@
 import { AuthMiddleware } from '@/presentation/middlewares/auth-middleware'
 import { LoadAccountByToken } from '@/domain/usecases/load-account-by-token'
-import { HttpRequest } from '@/presentation/protocols'
 import {
   forbidden,
   serverError,
@@ -14,8 +13,8 @@ type SutTypes = {
   loadAccountByTokenStub: LoadAccountByToken
 }
 
-const fixturesRequest = (): HttpRequest => ({
-  headers: { 'x-access-token': 'accessToken' }
+const fixtureRequest = (): AuthMiddleware.Request => ({
+  accessToken: 'accessToken'
 })
 
 const makeSut = (role?: string): SutTypes => {
@@ -30,14 +29,14 @@ const makeSut = (role?: string): SutTypes => {
 describe('AuthMiddleware', () => {
   it('Should return 403 if x-access-token no exists in headers', async () => {
     const { sut } = makeSut()
-    const httpResponse = await sut.handle({})
-    expect(httpResponse).toEqual(forbidden(new AccessDeniedError()))
+    const expectedResponse = await sut.handle({})
+    expect(expectedResponse).toEqual(forbidden(new AccessDeniedError()))
   })
   it('Should call LoadAccountByToken with correct accessToken', async () => {
     const role = 'bar'
     const { sut, loadAccountByTokenStub } = makeSut(role)
     const loadSpy = jest.spyOn(loadAccountByTokenStub, 'load')
-    await sut.handle(fixturesRequest())
+    await sut.handle(fixtureRequest())
     expect(loadSpy).toHaveBeenCalledWith('accessToken', role)
   })
   it('Should return 403 if LoadAccountByToken returns null', async () => {
@@ -45,13 +44,13 @@ describe('AuthMiddleware', () => {
     jest
       .spyOn(loadAccountByTokenStub, 'load')
       .mockResolvedValueOnce(Promise.resolve(null))
-    const expectedResponse = await sut.handle(fixturesRequest())
+    const expectedResponse = await sut.handle(fixtureRequest())
     expect(expectedResponse).toEqual(forbidden(new AccessDeniedError()))
   })
   it('Should return 200 if LoadAccountByToken returns an account', async () => {
     const { sut } = makeSut()
-    const httpResponse = await sut.handle(fixturesRequest())
-    expect(httpResponse).toEqual(success({ accountId: 'foo' }))
+    const expectedResponse = await sut.handle(fixtureRequest())
+    expect(expectedResponse).toEqual(success({ accountId: 'foo' }))
   })
   it('Should return 500 if LoadAccountByToken throws error', async () => {
     const { sut, loadAccountByTokenStub } = makeSut()
@@ -60,7 +59,7 @@ describe('AuthMiddleware', () => {
       .mockResolvedValueOnce(
         new Promise((resolve, reject) => reject(new Error()))
       )
-    const expectedResponse = await sut.handle(fixturesRequest())
+    const expectedResponse = await sut.handle(fixtureRequest())
     expect(expectedResponse).toEqual(serverError(new Error()))
   })
 })

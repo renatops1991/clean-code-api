@@ -2,7 +2,7 @@
 import { LogControllerDecorator } from '@/main/decorators/log-controller-decorator'
 import { LogErrorRepository } from '@/data/protocols/db/log/log-error-repository'
 import { serverError, success } from '@/presentation/helpers/http-helper'
-import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
+import { Controller, HttpResponse } from '@/presentation/protocols'
 import { fixturesAccountModel } from '@/tests/domain/fixtures'
 import { mockLogErrorRepository } from '../../data/mocks/mock-db-log'
 
@@ -14,7 +14,7 @@ type SutTypes = {
 
 const makeController = (): Controller => {
   class ControllerStub implements Controller {
-    async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+    async handle (request: any): Promise<HttpResponse> {
       return await Promise.resolve(success(fixturesAccountModel()))
     }
   }
@@ -27,13 +27,12 @@ const makeFakeServerError = (): HttpResponse => {
   return serverError(fakeError)
 }
 
-const makeFakeRequest = (): HttpRequest => ({
-  body: {
-    name: 'john foo bar',
-    email: 'john@foobar.com',
-    password: 'foo',
-    passwordConfirmation: 'foo'
-  }
+const fixtureRequest = (): any => ({
+  name: 'john foo bar',
+  email: 'john@foobar.com',
+  password: 'foo',
+  passwordConfirmation: 'foo'
+
 })
 
 const makeSut = (): SutTypes => {
@@ -52,19 +51,19 @@ describe('Log Controller Decorator', () => {
   it('Should call controller handle', async () => {
     const { sut, controllerStub } = makeSut()
     const handleSpy = jest.spyOn(controllerStub, 'handle')
-    await sut.handle(makeFakeRequest())
-    expect(handleSpy).toHaveBeenCalledWith(makeFakeRequest())
+    await sut.handle(fixtureRequest())
+    expect(handleSpy).toHaveBeenCalledWith(fixtureRequest())
   })
   it('Should return the same result of the controller', async () => {
     const { sut } = makeSut()
-    const httResponse = await sut.handle(makeFakeRequest())
+    const httResponse = await sut.handle(fixtureRequest())
     expect(httResponse).toEqual(success(fixturesAccountModel()))
   })
   it('Should call LogErrorRepository with correct error if controller returns a server error', async () => {
     const { sut, controllerStub, logErrorRepositoryStub } = makeSut()
     const logSpy = jest.spyOn(logErrorRepositoryStub, 'logError')
     jest.spyOn(controllerStub, 'handle').mockReturnValueOnce(Promise.resolve(makeFakeServerError()))
-    await sut.handle(makeFakeRequest())
+    await sut.handle(fixtureRequest())
     expect(logSpy).toHaveBeenCalledWith('foo')
   })
 })
