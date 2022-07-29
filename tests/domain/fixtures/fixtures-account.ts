@@ -1,8 +1,8 @@
 import { AccountModel } from '@/domain/models/account'
-import { AddAccountParams } from '@/domain/usecases/add-account'
 import { AuthenticationParams } from '@/domain/usecases/authentication'
+import { AddAccount } from '../usecases'
 
-export const fixturesAddAccountParams = (): AddAccountParams => ({
+export const fixturesAddAccountParams = (): AddAccount.Params => ({
   name: 'john foo bar',
   email: 'john@foobar.com',
   password: 'hashPassword'

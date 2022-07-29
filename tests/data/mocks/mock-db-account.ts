@@ -5,12 +5,12 @@ import {
   UpdateAccessTokenRepository
 } from '@/data/protocols'
 import { AccountModel } from '@/domain/models/account'
-import { AddAccountParams } from '@/domain/usecases/add-account'
+import { AddAccount } from '@/domain/usecases'
 import { fixturesAccountModel } from '@/tests/domain/fixtures'
 
 export const mockAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
-    async add (accountData: AddAccountParams): Promise<AccountModel> {
+    async add (accountData: AddAccount.Params): Promise<AddAccount.Result> {
       return await Promise.resolve(fixturesAccountModel())
     }
   }

@@ -53,10 +53,10 @@ describe('DbAddAccount UseCase', () => {
     const promise = sut.add(fixturesAddAccountParams())
     await expect(promise).rejects.toThrow()
   })
-  it('Should return an account on success', async () => {
+  it('Should return true if LoadAccountByEmailRepository return null', async () => {
     const { sut } = makeSut()
-    const account = await sut.add(fixturesAddAccountParams())
-    expect(account).toEqual(fixturesAccountModel())
+    const isValid = await sut.add(fixturesAddAccountParams())
+    expect(isValid).toBeTruthy()
   })
   it('Should call LoadAccountByEmailRepository with correct email', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = makeSut()
@@ -64,11 +64,11 @@ describe('DbAddAccount UseCase', () => {
     await sut.add(fixturesAddAccountParams())
     expect(loadSpy).toHaveBeenCalledWith('john@foobar.com')
   })
-  it('Should return null if LoadAccountByEmailRepository not return null', async () => {
+  it('Should return null if LoadAccountByEmailRepository return an account', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = makeSut()
     jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
       .mockReturnValueOnce(Promise.resolve(fixturesAccountModel()))
-    const account = await sut.add(fixturesAccountModel())
-    expect(account).toBeNull()
+    const isValid = await sut.add(fixturesAccountModel())
+    expect(isValid).toBeFalsy()
   })
 })

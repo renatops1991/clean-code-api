@@ -1,9 +1,8 @@
 import { Hashed } from '@/data/protocols/cryptography/hashed'
 import { AddAccountRepository } from '@/data/protocols/db/account/add-account-repository'
 import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/load-account-by-email-repository'
-import { AddAccount, AddAccountParams } from '@/domain/usecases/add-account'
-import { AccountModel } from '@/domain/models/account'
-
+import { AccountModel } from '@/domain/models'
+import { AddAccount } from '@/domain/usecases/add-account'
 export class DbAddAccount implements AddAccount {
   constructor (
     private readonly hashed: Hashed,
@@ -11,13 +10,13 @@ export class DbAddAccount implements AddAccount {
     private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository
   ) { }
 
-  async add (accountData: AddAccountParams): Promise<AccountModel> {
-    const existsAccount = await this.loadAccountByEmailRepository.loadByEmail(accountData.email)
-    if (!existsAccount) {
+  async add (accountData: AddAccount.Params): Promise<AddAccount.Result> {
+    const account = await this.loadAccountByEmailRepository.loadByEmail(accountData.email)
+    let newAccount: AccountModel = null
+    if (!account) {
       const hashPassword = await this.hashed.hash(accountData.password)
-      const account = await this.addAccountRepository.add(Object.assign({}, accountData, { password: hashPassword }))
-      return account
+      newAccount = await this.addAccountRepository.add(({ ...accountData, password: hashPassword }))
     }
-    return null
+    return newAccount != null
   }
 }
