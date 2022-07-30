@@ -1,14 +1,10 @@
-import {
-  AuthenticationParams,
-  Authentication
-} from '@/domain/usecases/authentication'
-import { AuthenticationModel } from '@/domain/models/authentication'
+import { Authentication } from '@/domain/usecases/authentication'
 
 export const mockAuthentication = (): Authentication => {
   class AuthenticationSub implements Authentication {
     async auth (
-      authentication: AuthenticationParams
-    ): Promise<AuthenticationModel> {
+      authentication: Authentication.Params
+    ): Promise<Authentication.Result> {
       const authenticationModel = {
         accessToken: 'authToken',
         name: 'john foo bar'

@@ -1,6 +1,6 @@
+import { Authentication } from '@/domain/usecases/authentication'
 import { AccountModel } from '@/domain/models/account'
-import { AuthenticationParams } from '@/domain/usecases/authentication'
-import { AddAccount } from '../usecases'
+import { AddAccount } from '@/domain/usecases/add-account'
 
 export const fixturesAddAccountParams = (): AddAccount.Params => ({
   name: 'john foo bar',
@@ -12,7 +12,7 @@ export const fixturesAccountModel = (): AccountModel => Object.assign({}, fixtur
   id: 'foo'
 })
 
-export const fixturesAuthentication = (): AuthenticationParams => ({
+export const fixturesAuthentication = (): Authentication.Params => ({
   email: 'john@example.com',
   password: 'foo'
 })
