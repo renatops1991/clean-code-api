@@ -1,10 +1,15 @@
-import { AddSurveyParams, AddSurveyRepository, LoadSurveyByIdRepository, LoadSurveysRepository } from '@/data/usecases/survey/db-survey-protocols'
+import { AddSurvey, } from '@/domain/usecases/add-survey'
+import {
+  AddSurveyRepository,
+  LoadSurveyByIdRepository,
+  LoadSurveysRepository
+} from '@/data/protocols'
 import { fixturesSurveyModel, fixturesSurveysModel } from '@/tests/domain/fixtures'
 import { SurveyModel } from '@/domain/models/survey'
 
 export const mockAddSurveyRepository = (): AddSurveyRepository => {
   class AddSurveyRepositoryStub implements AddSurveyRepository {
-    async add (surveyData: AddSurveyParams): Promise<void> {
+    async add(surveyData: AddSurvey.Params): Promise<void> {
       return await Promise.resolve()
     }
   }
@@ -13,7 +18,7 @@ export const mockAddSurveyRepository = (): AddSurveyRepository => {
 
 export const mockLoadSurveyByIdRepository = (): LoadSurveyByIdRepository => {
   class LoadSurveyByIdRepositoryStub implements LoadSurveyByIdRepository {
-    async loadById (id: string): Promise<SurveyModel> {
+    async loadById(id: string): Promise<SurveyModel> {
       return await Promise.resolve(fixturesSurveyModel())
     }
   }
@@ -23,7 +28,7 @@ export const mockLoadSurveyByIdRepository = (): LoadSurveyByIdRepository => {
 
 export const mockLoadSurveysRepository = (): LoadSurveysRepository => {
   class LoadSurveysRepositoryStub implements LoadSurveysRepository {
-    async loadAll (accountId: string): Promise<SurveyModel[]> {
+    async loadAll(accountId: string): Promise<SurveyModel[]> {
       return await Promise.resolve(fixturesSurveysModel())
     }
   }

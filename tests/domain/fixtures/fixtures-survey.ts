@@ -1,5 +1,5 @@
 import { SurveyModel } from '@/domain/models/survey'
-import { AddSurveyParams } from '@/domain/usecases/add-survey'
+import { AddSurvey } from '@/domain/usecases/add-survey'
 import { faker } from '@faker-js/faker'
 
 export const fixturesSurveyModel = (): SurveyModel => {
@@ -14,7 +14,7 @@ export const fixturesSurveyModel = (): SurveyModel => {
   }
 }
 
-export const fixturesSurveyParams = (): AddSurveyParams => ({
+export const fixturesSurveyParams = (): AddSurvey.Params => ({
   question: faker.random.word(),
   answers: [{
     answer: 'bar',

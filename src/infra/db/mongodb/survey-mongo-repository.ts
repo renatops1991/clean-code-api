@@ -2,7 +2,7 @@ import { MongoHelper } from './mongo-helper'
 import { QueryBuilder } from './query-builder'
 import { LoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-repository'
 import { AddSurveyRepository, LoadSurveyByIdRepository } from '@/data/protocols/db'
-import { AddSurveyParams } from '@/domain/usecases/add-survey'
+import { AddSurvey } from '@/domain/usecases/add-survey'
 import { SurveyModel } from '@/domain/models/survey'
 import { ObjectId } from 'mongodb'
 
@@ -11,7 +11,7 @@ implements
     AddSurveyRepository,
     LoadSurveysRepository,
     LoadSurveyByIdRepository {
-  async add (surveyData: AddSurveyParams): Promise<void> {
+  async add (surveyData: AddSurvey.Params): Promise<void> {
     const collection = await MongoHelper.getCollection('surveys')
     await collection.insertOne(surveyData)
   }
