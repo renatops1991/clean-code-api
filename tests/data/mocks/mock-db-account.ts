@@ -10,7 +10,7 @@ import { fixturesAccountModel } from '@/tests/domain/fixtures'
 
 export const mockAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
-    async add (accountData: AddAccount.Params): Promise<AddAccount.Result> {
+    async add (accountData: AddAccount.Params): Promise<AddAccountRepository.Result> {
       return await Promise.resolve(fixturesAccountModel())
     }
   }
@@ -33,7 +33,7 @@ export const mockLoadAccountByTokenRepository =
   (): LoadAccountByTokenRepository => {
     class LoadAccountByTokenRepositoryStub
     implements LoadAccountByTokenRepository {
-      async loadByToken (token: string, role?: string): Promise<AccountModel> {
+      async loadByToken (token: string, role?: string): Promise<LoadAccountByTokenRepository.Result> {
         return await Promise.resolve(fixturesAccountModel())
       }
     }

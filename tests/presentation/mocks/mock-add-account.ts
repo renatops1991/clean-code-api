@@ -1,6 +1,5 @@
 import { fixturesAccountModel } from '@/tests/domain/fixtures'
 import { AddAccount } from '@/domain/usecases'
-import { AccountModel } from '@/domain/models/account'
 import { LoadAccountByToken } from '@/domain/usecases/load-account-by-token'
 
 export const mockAddAccount = (): AddAccount => {
@@ -14,7 +13,7 @@ export const mockAddAccount = (): AddAccount => {
 
 export const mockLoadAccountByToken = (): LoadAccountByToken => {
   class LoadAccountByTokenStub implements LoadAccountByToken {
-    async load (accessToken: string, role?: string): Promise<AccountModel> {
+    async load (accessToken: string, role?: string): Promise<LoadAccountByToken.Result> {
       return await Promise.resolve(fixturesAccountModel())
     }
   }
