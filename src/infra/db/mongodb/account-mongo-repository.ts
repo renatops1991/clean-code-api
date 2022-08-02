@@ -5,7 +5,6 @@ import {
   LoadAccountByTokenRepository,
   UpdateAccessTokenRepository
 } from '@/data/protocols/db/account'
-import { AccountModel } from '@/domain/models/account'
 import { AddAccount } from '@/domain/usecases'
 import { ObjectId } from 'mongodb'
 
@@ -23,12 +22,21 @@ implements
     const resultAccount = await accountCollection.findOne({
       _id: result.insertedId
     })
-    return MongoHelper.map(resultAccount)
+    return resultAccount !== null
   }
 
-  async loadByEmail (email: string): Promise<AccountModel> {
+  async loadByEmail (email: string): Promise<LoadAccountByEmailRepository.Result> {
     const accountCollection = await MongoHelper.getCollection('accounts')
-    const resultAccount = await accountCollection.findOne({ email })
+    const resultAccount = await accountCollection.findOne(
+      { email },
+      {
+        projection: {
+          _id: 1,
+          name: 1,
+          password: 1
+        }
+      }
+    )
     return resultAccount && MongoHelper.map(resultAccount)
   }
 

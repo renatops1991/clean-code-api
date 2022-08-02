@@ -1,8 +1,19 @@
 import { DbAddAccount } from '@/data/usecases/db-add-account'
 import { Hashed } from '@/data/protocols/cryptography/hashed'
-import { AddAccountRepository, LoadAccountByEmailRepository } from '@/data/protocols'
-import { fixturesAccountModel, fixturesAddAccountParams, throwError } from '@/tests/domain/fixtures'
-import { mockHashed, mockAddAccountRepository, mockLoadAccountByEmailRepository } from '../mocks'
+import {
+  AddAccountRepository,
+  LoadAccountByEmailRepository
+} from '@/data/protocols'
+import {
+  fixturesAccountModel,
+  fixturesAddAccountParams,
+  throwError
+} from '@/tests/domain/fixtures'
+import {
+  mockHashed,
+  mockAddAccountRepository,
+  mockLoadAccountByEmailRepository
+} from '../mocks'
 
 type SutTypes = {
   sut: DbAddAccount
@@ -15,8 +26,14 @@ const makeSut = (): SutTypes => {
   const hashStub = mockHashed()
   const addAccountRepositoryStub = mockAddAccountRepository()
   const loadAccountByEmailRepositoryStub = mockLoadAccountByEmailRepository()
-  jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockReturnValue(Promise.resolve(null))
-  const sut = new DbAddAccount(hashStub, addAccountRepositoryStub, loadAccountByEmailRepositoryStub)
+  jest
+    .spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
+    .mockReturnValue(Promise.resolve(null))
+  const sut = new DbAddAccount(
+    hashStub,
+    addAccountRepositoryStub,
+    loadAccountByEmailRepositoryStub
+  )
   return {
     sut,
     hashStub,
@@ -49,14 +66,24 @@ describe('DbAddAccount UseCase', () => {
   })
   it('Should pass the exception if AddAccountRepository throws', async () => {
     const { sut, addAccountRepositoryStub } = makeSut()
-    jest.spyOn(addAccountRepositoryStub, 'add').mockImplementationOnce(throwError)
+    jest
+      .spyOn(addAccountRepositoryStub, 'add')
+      .mockImplementationOnce(throwError)
     const promise = sut.add(fixturesAddAccountParams())
     await expect(promise).rejects.toThrow()
   })
-  it('Should return true if LoadAccountByEmailRepository return null', async () => {
+  it('Should return true on success', async () => {
     const { sut } = makeSut()
     const isValid = await sut.add(fixturesAddAccountParams())
     expect(isValid).toBeTruthy()
+  })
+  it('Should return false if addAccountRepository returns false', async () => {
+    const { sut, addAccountRepositoryStub } = makeSut()
+    jest
+      .spyOn(addAccountRepositoryStub, 'add')
+      .mockReturnValueOnce(Promise.resolve(false))
+    const isValid = await sut.add(fixturesAddAccountParams())
+    expect(isValid).toBeFalsy()
   })
   it('Should call LoadAccountByEmailRepository with correct email', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = makeSut()
@@ -66,9 +93,10 @@ describe('DbAddAccount UseCase', () => {
   })
   it('Should return null if LoadAccountByEmailRepository return an account', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = makeSut()
-    jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
+    jest
+      .spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
       .mockReturnValueOnce(Promise.resolve(fixturesAccountModel()))
-    const isValid = await sut.add(fixturesAccountModel())
+    const isValid = await sut.add(fixturesAddAccountParams())
     expect(isValid).toBeFalsy()
   })
 })

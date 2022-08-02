@@ -25,12 +25,8 @@ describe('Account Mongo Repository', () => {
   describe('add', () => {
     it('Should return an account on add success', async () => {
       const sut = makeSut()
-      const account = await sut.add(fixturesAddAccountParams())
-      expect(account).toBeTruthy()
-      expect(account.id).toBeTruthy()
-      expect(account.name).toBe('john foo bar')
-      expect(account.email).toBe('john@foobar.com')
-      expect(account.password).toBe('hashPassword')
+      const isValid = await sut.add(fixturesAddAccountParams())
+      expect(isValid).toBeTruthy()
     })
   })
 
@@ -42,7 +38,6 @@ describe('Account Mongo Repository', () => {
       expect(account).toBeTruthy()
       expect(account.id).toBeTruthy()
       expect(account.name).toBe('john foo bar')
-      expect(account.email).toBe('john@foobar.com')
       expect(account.password).toBe('hashPassword')
     })
     it('Should return null if loadByEmail fails', async () => {
@@ -54,11 +49,17 @@ describe('Account Mongo Repository', () => {
   describe('updateAccessToken', () => {
     it('Should update the account accessToken on updateAccessToken success', async () => {
       const sut = makeSut()
-      const insertAccount = await accountCollection.insertOne(fixturesAddAccountParams())
-      const responseAccount = await accountCollection.findOne({ _id: insertAccount.insertedId })
+      const insertAccount = await accountCollection.insertOne(
+        fixturesAddAccountParams()
+      )
+      const responseAccount = await accountCollection.findOne({
+        _id: insertAccount.insertedId
+      })
       expect(responseAccount.accessToken).toBeFalsy()
       await sut.updateAccessToken(responseAccount._id, 'fooToken')
-      const account = await accountCollection.findOne({ _id: responseAccount._id })
+      const account = await accountCollection.findOne({
+        _id: responseAccount._id
+      })
       expect(account).toBeTruthy()
       expect(account.accessToken).toBe('fooToken')
     })
