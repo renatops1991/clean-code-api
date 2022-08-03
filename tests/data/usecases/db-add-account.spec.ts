@@ -2,43 +2,39 @@ import { DbAddAccount } from '@/data/usecases/db-add-account'
 import { Hashed } from '@/data/protocols/cryptography/hashed'
 import {
   AddAccountRepository,
-  LoadAccountByEmailRepository
+  CheckAccountByEmailRepository
 } from '@/data/protocols'
 import {
-  fixturesAccountModel,
   fixturesAddAccountParams,
   throwError
 } from '@/tests/domain/fixtures'
 import {
   mockHashed,
   mockAddAccountRepository,
-  mockLoadAccountByEmailRepository
+  mockCheckAccountByEmailRepository
 } from '../mocks'
 
 type SutTypes = {
   sut: DbAddAccount
   hashStub: Hashed
   addAccountRepositoryStub: AddAccountRepository
-  loadAccountByEmailRepositoryStub: LoadAccountByEmailRepository
+  checkAccountByEmailRepositoryStub: CheckAccountByEmailRepository
 }
 
 const makeSut = (): SutTypes => {
   const hashStub = mockHashed()
   const addAccountRepositoryStub = mockAddAccountRepository()
-  const loadAccountByEmailRepositoryStub = mockLoadAccountByEmailRepository()
-  jest
-    .spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
-    .mockReturnValue(Promise.resolve(null))
+  const checkAccountByEmailRepositoryStub = mockCheckAccountByEmailRepository()
   const sut = new DbAddAccount(
     hashStub,
     addAccountRepositoryStub,
-    loadAccountByEmailRepositoryStub
+    checkAccountByEmailRepositoryStub
   )
   return {
     sut,
     hashStub,
     addAccountRepositoryStub,
-    loadAccountByEmailRepositoryStub
+    checkAccountByEmailRepositoryStub
   }
 }
 describe('DbAddAccount UseCase', () => {
@@ -86,16 +82,16 @@ describe('DbAddAccount UseCase', () => {
     expect(isValid).toBeFalsy()
   })
   it('Should call LoadAccountByEmailRepository with correct email', async () => {
-    const { sut, loadAccountByEmailRepositoryStub } = makeSut()
-    const loadSpy = jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
+    const { sut, checkAccountByEmailRepositoryStub } = makeSut()
+    const loadSpy = jest.spyOn(checkAccountByEmailRepositoryStub, 'checkByEmail')
     await sut.add(fixturesAddAccountParams())
     expect(loadSpy).toHaveBeenCalledWith('john@foobar.com')
   })
-  it('Should return null if LoadAccountByEmailRepository return an account', async () => {
-    const { sut, loadAccountByEmailRepositoryStub } = makeSut()
+  it('Should return false if CheckAccountByEmailRepository return an account', async () => {
+    const { sut, checkAccountByEmailRepositoryStub } = makeSut()
     jest
-      .spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
-      .mockReturnValueOnce(Promise.resolve(fixturesAccountModel()))
+      .spyOn(checkAccountByEmailRepositoryStub, 'checkByEmail')
+      .mockReturnValueOnce(Promise.resolve(true))
     const isValid = await sut.add(fixturesAddAccountParams())
     expect(isValid).toBeFalsy()
   })

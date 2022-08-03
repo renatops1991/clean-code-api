@@ -1,5 +1,6 @@
 import {
   AddAccountRepository,
+  CheckAccountByEmailRepository,
   LoadAccountByEmailRepository,
   LoadAccountByTokenRepository,
   UpdateAccessTokenRepository
@@ -26,6 +27,17 @@ export const mockLoadAccountByEmailRepository =
       }
     }
     return new LoadAccountByEmailRepositoryStub()
+  }
+
+export const mockCheckAccountByEmailRepository =
+  (): CheckAccountByEmailRepository => {
+    class CheckAccountByEmailRepositoryStub
+    implements CheckAccountByEmailRepository {
+      async checkByEmail (email: string): Promise<CheckAccountByEmailRepository.Result> {
+        return false
+      }
+    }
+    return new CheckAccountByEmailRepositoryStub()
   }
 
 export const mockLoadAccountByTokenRepository =

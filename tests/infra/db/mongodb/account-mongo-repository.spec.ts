@@ -2,6 +2,7 @@ import { AccountMongoRepository } from '@/infra/db/mongodb/account-mongo-reposit
 import { MongoHelper } from '@/infra/db/mongodb/mongo-helper'
 import { Collection } from 'mongodb'
 import { fixturesAddAccountParams } from '@/tests/domain/fixtures/fixtures-account'
+import { faker } from '@faker-js/faker'
 
 let accountCollection: Collection
 describe('Account Mongo Repository', () => {
@@ -31,7 +32,7 @@ describe('Account Mongo Repository', () => {
   })
 
   describe('loadByEmail', () => {
-    it('Should return ana account on loadByEmail success', async () => {
+    it('Should return an account on loadByEmail success', async () => {
       const sut = makeSut()
       await accountCollection.insertOne(fixturesAddAccountParams())
       const account = await sut.loadByEmail('john@foobar.com')
@@ -43,6 +44,20 @@ describe('Account Mongo Repository', () => {
     it('Should return null if loadByEmail fails', async () => {
       const sut = makeSut()
       const resultAccount = await sut.loadByEmail('john@foobar.com')
+      expect(resultAccount).toBeFalsy()
+    })
+  })
+
+  describe('checkByEmail', () => {
+    it('Should return true is email is valid', async () => {
+      const sut = makeSut()
+      await accountCollection.insertOne(fixturesAddAccountParams())
+      const account = await sut.checkByEmail('john@foobar.com')
+      expect(account).toBeTruthy()
+    })
+    it('Should return false if email not valid', async () => {
+      const sut = makeSut()
+      const resultAccount = await sut.checkByEmail(faker.internet.email())
       expect(resultAccount).toBeFalsy()
     })
   })
