@@ -2,6 +2,7 @@ import { SurveyMongoRepository, MongoHelper } from '@/infra/db/mongodb'
 import { Collection } from 'mongodb'
 import MockDate from 'mockdate'
 import { fixturesSurveyParams } from '@/tests/domain/fixtures'
+import { faker } from '@faker-js/faker'
 
 let surveyCollection: Collection
 let surveyResultCollection: Collection
@@ -109,6 +110,30 @@ describe('SurveyMongoRepository', () => {
       const survey = await sut.loadById(MongoHelper.map(surveyResult).id)
       expect(survey).toBeTruthy()
       expect(survey.id).toBeTruthy()
+    })
+  })
+
+  describe('CheckById', () => {
+    it('Should return true if survey exists', async () => {
+      const createdSurvey = await surveyCollection.insertOne({
+        question: 'foo',
+        answers: [{
+          image: 'https://image.com/foo.jpg',
+          answer: 'bar'
+        }],
+        date: new Date()
+      })
+
+      const surveyResult = await surveyCollection.findOne({ _id: createdSurvey.insertedId })
+      const sut = makeSut()
+      const existsSurvey = await sut.checkById(MongoHelper.map(surveyResult).id)
+      expect(existsSurvey).toBeTruthy()
+    })
+
+    it('Should return false if survey not exists', async () => {
+      const sut = makeSut()
+      const existsSurvey = await sut.checkById(faker.database.mongodbObjectId())
+      expect(existsSurvey).toBeFalsy()
     })
   })
 })

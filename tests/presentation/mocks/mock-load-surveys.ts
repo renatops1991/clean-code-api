@@ -1,5 +1,5 @@
 import { fixturesSurveyModel, fixturesSurveysModel } from '@/tests/domain/fixtures'
-import { LoadSurveyById, LoadSurveys } from '@/domain/usecases'
+import { LoadSurveyById, LoadSurveys, CheckSurveyById } from '@/domain/usecases'
 import { SurveyModel } from '@/domain/models/survey'
 
 export const mockLoadSurveys = (): LoadSurveys => {
@@ -20,4 +20,13 @@ export const mockLoadSurveyById = (): LoadSurveyById => {
     }
   }
   return new LoadSurveyByIdStub()
+}
+
+export const mockCheckSurveyById = (): CheckSurveyById => {
+  class CheckSurveyByIdStub implements CheckSurveyById {
+    async checkById (id: string): Promise<CheckSurveyById.Result> {
+      return true
+    }
+  }
+  return new CheckSurveyByIdStub()
 }

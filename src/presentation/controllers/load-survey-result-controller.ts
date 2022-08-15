@@ -4,7 +4,7 @@ import {
   serverError,
   success
 } from '@/presentation/helpers/http-helper'
-import { LoadSurveyById, LoadSurveyResult } from '@/domain/usecases'
+import { CheckSurveyById, LoadSurveyResult } from '@/domain/usecases'
 import {
   Controller,
   HttpResponse
@@ -12,15 +12,15 @@ import {
 
 export class LoadSurveyResultController implements Controller {
   constructor (
-    private readonly loadSurveyById: LoadSurveyById,
+    private readonly checkSurveyById: CheckSurveyById,
     private readonly loadSurveyResult: LoadSurveyResult
   ) {}
 
   async handle (request: LoadSurveyResultController.Request): Promise<HttpResponse> {
     try {
       const { surveyId } = request
-      const survey = await this.loadSurveyById.loadById(surveyId)
-      if (!survey) {
+      const existsSurvey = await this.checkSurveyById.checkById(surveyId)
+      if (!existsSurvey) {
         return forbidden(new InvalidParamError('surveyId'))
       }
       const surveyResult = await this.loadSurveyResult.load(
