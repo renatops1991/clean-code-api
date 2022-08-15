@@ -52,7 +52,7 @@ implements
     return MongoHelper.mapCollection(surveysList)
   }
 
-  async loadById (id: string): Promise<SurveyModel> {
+  async loadById (id: string): Promise<LoadSurveyByIdRepository.Result> {
     const collection = await MongoHelper.getCollection('surveys')
     const survey = await collection.findOne({ _id: new ObjectId(id) })
     return survey && MongoHelper.map(survey)
