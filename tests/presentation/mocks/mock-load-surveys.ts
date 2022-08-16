@@ -1,5 +1,9 @@
-import { fixturesSurveyModel, fixturesSurveysModel } from '@/tests/domain/fixtures'
-import { LoadSurveyById, LoadSurveys, CheckSurveyById } from '@/domain/usecases'
+import { fixturesSurveysModel } from '@/tests/domain/fixtures'
+import {
+  LoadAnswersBySurvey,
+  LoadSurveys,
+  CheckSurveyById
+} from '@/domain/usecases'
 import { SurveyModel } from '@/domain/models/survey'
 
 export const mockLoadSurveys = (): LoadSurveys => {
@@ -13,13 +17,15 @@ export const mockLoadSurveys = (): LoadSurveys => {
   return new LoadSurveysStub()
 }
 
-export const mockLoadSurveyById = (): LoadSurveyById => {
-  class LoadSurveyByIdStub implements LoadSurveyById {
-    async loadById (id: string): Promise<SurveyModel> {
-      return await Promise.resolve(fixturesSurveyModel())
+export const mockLoadAnswersBySurvey = (): LoadAnswersBySurvey => {
+  class LoadAnswersBySurveyStub implements LoadAnswersBySurvey {
+    id: string
+    async loadAnswers (id: string): Promise<LoadAnswersBySurvey.Result> {
+      this.id = id
+      return await Promise.resolve(['bar', 'foo'])
     }
   }
-  return new LoadSurveyByIdStub()
+  return new LoadAnswersBySurveyStub()
 }
 
 export const mockCheckSurveyById = (): CheckSurveyById => {

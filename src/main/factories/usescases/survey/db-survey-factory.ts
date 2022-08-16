@@ -1,13 +1,13 @@
 import {
   DbAddSurvey,
-  DbLoadSurveyById,
+  DbLoadAnswersBySurvey,
   DbLoadSurveys,
   DbCheckSurveyById
 } from '@/data/usecases'
 import {
   AddSurvey,
   CheckSurveyById,
-  LoadSurveyById,
+  LoadAnswersBySurvey,
   LoadSurveys
 } from '@/domain/usecases'
 import { SurveyMongoRepository } from '@/infra/db/mongodb/survey-mongo-repository'
@@ -22,9 +22,9 @@ export const makeDbLoadSurveys = (): LoadSurveys => {
   return new DbLoadSurveys(surveyMongoRepository)
 }
 
-export const makeDbLoadSurveyById = (): LoadSurveyById => {
+export const makeDbLoadAnswersBySurvey = (): LoadAnswersBySurvey => {
   const surveyMongoRepository = new SurveyMongoRepository()
-  return new DbLoadSurveyById(surveyMongoRepository)
+  return new DbLoadAnswersBySurvey(surveyMongoRepository)
 }
 
 export const makeDbCheckSurveyById = (): CheckSurveyById => {
