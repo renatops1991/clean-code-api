@@ -1,21 +1,21 @@
 import { DbLoadAnswersBySurvey } from '@/data/usecases/db-load-answers-by-survey'
-import { LoadSurveyByIdRepository } from '@/data/protocols/db/survey/load-survey-by-id-repository'
+import { LoadAnswersBySurveyRepository } from '@/data/protocols/db/survey/load-answers-by-survey-repository'
 import { throwError, fixturesSurveyModel } from '@/tests/domain/fixtures'
-import { mockLoadSurveyByIdRepository } from '../mocks'
+import { mockLoadAnswersBySurveyRepository } from '../mocks'
 import MockDate from 'mockdate'
 import { faker } from '@faker-js/faker'
 
 type SutTypes = {
   sut: DbLoadAnswersBySurvey
-  loadSurveyByIdRepositoryStub: LoadSurveyByIdRepository
+  loadAnswersBySurveyRepositoryStub: LoadAnswersBySurveyRepository
 }
 
 const makeSut = (): SutTypes => {
-  const loadSurveyByIdRepositoryStub = mockLoadSurveyByIdRepository()
-  const sut = new DbLoadAnswersBySurvey(loadSurveyByIdRepositoryStub)
+  const loadAnswersBySurveyRepositoryStub = mockLoadAnswersBySurveyRepository()
+  const sut = new DbLoadAnswersBySurvey(loadAnswersBySurveyRepositoryStub)
   return {
     sut,
-    loadSurveyByIdRepositoryStub
+    loadAnswersBySurveyRepositoryStub
   }
 }
 
@@ -27,17 +27,17 @@ describe('DbLoadSurveyById', () => {
   afterAll(() => {
     MockDate.reset()
   })
-  it('Should call LoadSurveyByIdRepository', async () => {
+  it('Should call LoadAnswersBySurveyRepository', async () => {
     const surveyId = faker.database.mongodbObjectId()
-    const { sut, loadSurveyByIdRepositoryStub } = makeSut()
-    const loadByIdSpy = jest.spyOn(loadSurveyByIdRepositoryStub, 'loadById')
+    const { sut, loadAnswersBySurveyRepositoryStub } = makeSut()
+    const loadAnswersSpy = jest.spyOn(loadAnswersBySurveyRepositoryStub, 'loadAnswers')
     await sut.loadAnswers(surveyId)
-    expect(loadByIdSpy).toHaveBeenCalledWith(surveyId)
+    expect(loadAnswersSpy).toHaveBeenCalledWith(surveyId)
   })
-  it('Should return empty array if LoadSurveyByIdRepository returns null', async () => {
-    const { sut, loadSurveyByIdRepositoryStub } = makeSut()
+  it('Should return empty array if LoadAnswersBySurveyRepository returns null', async () => {
+    const { sut, loadAnswersBySurveyRepositoryStub } = makeSut()
     jest
-      .spyOn(loadSurveyByIdRepositoryStub, 'loadById')
+      .spyOn(loadAnswersBySurveyRepositoryStub, 'loadAnswers')
       .mockReturnValueOnce(Promise.resolve(null))
     const expectedSurvey = await sut.loadAnswers('foo')
     expect(expectedSurvey).toEqual([])
@@ -49,10 +49,10 @@ describe('DbLoadSurveyById', () => {
       fixturesSurveyModel().answers[0].answer
     ])
   })
-  it('Should throw if LoadSurveyByIdRepository throws exception', async () => {
-    const { sut, loadSurveyByIdRepositoryStub } = makeSut()
+  it('Should throw if LoadAnswersBySurveyRepository throws exception', async () => {
+    const { sut, loadAnswersBySurveyRepositoryStub } = makeSut()
     jest
-      .spyOn(loadSurveyByIdRepositoryStub, 'loadById')
+      .spyOn(loadAnswersBySurveyRepositoryStub, 'loadAnswers')
       .mockImplementationOnce(throwError)
     const expectedPromise = sut.loadAnswers('foo')
     await expect(expectedPromise).rejects.toThrow()

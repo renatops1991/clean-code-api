@@ -96,20 +96,35 @@ describe('SurveyMongoRepository', () => {
 
   describe('loadById', () => {
     it('Should load survey by id on success', async () => {
-      const createdSurvey = await surveyCollection.insertOne({
-        question: 'foo',
-        answers: [{
-          image: 'https://image.com/foo.jpg',
-          answer: 'bar'
-        }],
-        date: new Date()
-      })
+      const createdSurvey = await surveyCollection.insertOne(fixturesSurveyParams())
 
       const surveyResult = await surveyCollection.findOne({ _id: createdSurvey.insertedId })
       const sut = makeSut()
       const survey = await sut.loadById(MongoHelper.map(surveyResult).id)
       expect(survey).toBeTruthy()
       expect(survey.id).toBeTruthy()
+    })
+
+    it('Should return null if survey does not exists', async () => {
+      const sut = makeSut()
+      const survey = await sut.loadById(faker.database.mongodbObjectId())
+      expect(survey).toBeFalsy()
+    })
+  })
+
+  describe('loadAnswers', () => {
+    it('Should load answers on success', async () => {
+      const createdSurvey = await surveyCollection.insertOne(fixturesSurveyParams())
+      const surveyResult = await surveyCollection.findOne({ _id: createdSurvey.insertedId })
+      const sut = makeSut()
+      const expectedAnswers = await sut.loadAnswers(MongoHelper.map(surveyResult).id) as any
+      expect(expectedAnswers).toEqual([fixturesSurveyParams().answers[0].answer])
+    })
+
+    it('Should return array empty if survey does not exist', async () => {
+      const sut = makeSut()
+      const survey = await sut.loadAnswers(faker.database.mongodbObjectId())
+      expect(survey).toEqual([])
     })
   })
 

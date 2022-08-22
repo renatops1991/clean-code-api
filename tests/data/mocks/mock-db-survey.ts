@@ -2,6 +2,7 @@ import { AddSurvey } from '@/domain/usecases/add-survey'
 import {
   AddSurveyRepository,
   CheckSurveyByIdRepository,
+  LoadAnswersBySurveyRepository,
   LoadSurveyByIdRepository,
   LoadSurveysRepository
 } from '@/data/protocols'
@@ -25,6 +26,16 @@ export const mockLoadSurveyByIdRepository = (): LoadSurveyByIdRepository => {
   }
 
   return new LoadSurveyByIdRepositoryStub()
+}
+
+export const mockLoadAnswersBySurveyRepository = (): LoadAnswersBySurveyRepository => {
+  class LoadAnswersBySurveyRepositoryStub implements LoadAnswersBySurveyRepository {
+    async loadAnswers (id: string): Promise<LoadAnswersBySurveyRepository.Result> {
+      return await Promise.resolve([fixturesSurveyModel().answers[0].answer])
+    }
+  }
+
+  return new LoadAnswersBySurveyRepositoryStub()
 }
 
 export const mockCheckSurveyByIdRepository = (): CheckSurveyByIdRepository => {

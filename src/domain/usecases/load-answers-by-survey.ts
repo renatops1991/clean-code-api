@@ -4,5 +4,4 @@ export interface LoadAnswersBySurvey {
 
 export namespace LoadAnswersBySurvey {
   export type Result = string[]
-
 }
