@@ -35,7 +35,7 @@ implements
         _id: 1,
         question: 1,
         answers: 1,
-        date: 1,
+        createdAt: 1,
         didAnswer: {
           $gte: [
             {
