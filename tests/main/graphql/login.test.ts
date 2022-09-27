@@ -3,7 +3,6 @@ import { hash } from 'bcrypt'
 import { Collection } from 'mongodb'
 import request from 'supertest'
 import app from '@/main/config/app'
-import { send } from 'process'
 
 let accountCollection: Collection
 
