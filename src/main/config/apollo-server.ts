@@ -1,8 +1,11 @@
 import typeDefs from '@/main/graphql/type-defs'
 import resolvers from '@/main/graphql/resolvers'
+import { authDirectiveTransform } from '@/main/graphql/directives'
+
 import { ApolloServer } from 'apollo-server-express'
 import { Express } from 'express'
 import { GraphQLError } from 'graphql'
+import { makeExecutableSchema } from '@graphql-tools/schema'
 
 const handlerErrors = (response: any, errors: readonly GraphQLError[]): void => {
   errors?.forEach(error => {
@@ -23,10 +26,13 @@ const hasErrorAreTheSame = (error: GraphQLError, errorName: string): boolean => 
   return [error.name, error.originalError?.name].some(name => name === errorName)
 }
 
+let schema = makeExecutableSchema({ resolvers, typeDefs })
+schema = authDirectiveTransform(schema)
+
 export default async (app: Express): Promise<void> => {
   const server = new ApolloServer({
-    resolvers,
-    typeDefs,
+    schema,
+    context: ({ req }) => ({ req }),
     plugins: [{
       requestDidStart: async () => ({
         willSendResponse: async ({ response, errors }) => handlerErrors(response, errors)
