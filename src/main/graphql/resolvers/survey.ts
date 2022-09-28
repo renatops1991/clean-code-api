@@ -3,6 +3,6 @@ import { makeLoadSurveysController } from '@/main/factories'
 
 export default {
   Query: {
-    surveys: async () => await apolloServerResolverAdapter(makeLoadSurveysController())
+    surveys: async (parent: any, args: any, context: any) => await apolloServerResolverAdapter(makeLoadSurveysController(), args, context)
   }
 }

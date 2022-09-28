@@ -6,10 +6,10 @@ import {
 
 export default {
   Query: {
-    surveyResult: async (parent: any, args: any) => await apolloServerResolverAdapter(makeLoadSurveyResultController(), args)
+    surveyResult: async (parent: any, args: any, context: any) => await apolloServerResolverAdapter(makeLoadSurveyResultController(), args, context)
   },
 
   Mutation: {
-    saveSurveyResult: async (parent: any, args: any) => await apolloServerResolverAdapter(makeSaveSurveyResultController(), args)
+    saveSurveyResult: async (parent: any, args: any, context: any) => await apolloServerResolverAdapter(makeSaveSurveyResultController(), args, context)
   }
 }
