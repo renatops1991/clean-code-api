@@ -10,7 +10,7 @@ Outside the course, I used some references like [Clean Code TypeScript](https://
 ### Login API
 
 - [POST] - Create user: `{{host}}/api/signup`
-- [POST] - Sign in user: `{{host}}/api/login`
+- [POST] - Sign in user: `{{host}}/api/signin`
 
 ### Survey API
 

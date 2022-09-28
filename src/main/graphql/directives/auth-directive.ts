@@ -1,7 +1,7 @@
 import { makeAuthMiddleware } from '@/main/factories/middlewares/auth-middleware-factory'
 import { getDirective, MapperKind, mapSchema } from '@graphql-tools/utils'
 import { ForbiddenError } from 'apollo-server-express'
-import { GraphQLSchema } from 'graphql'
+import { GraphQLResolveInfo, GraphQLSchema } from 'graphql'
 
 export const authDirectiveTransform = (schema: GraphQLSchema): GraphQLSchema => {
   return mapSchema(schema, {
@@ -10,7 +10,7 @@ export const authDirectiveTransform = (schema: GraphQLSchema): GraphQLSchema => 
 
       if (authDirective) {
         const { resolve } = fieldConfig
-        fieldConfig.resolve = async (parent, args, context, info) => {
+        fieldConfig.resolve = async (parent, args, context, info: GraphQLResolveInfo) => {
           const httpRequest = {
             accessToken: context?.req?.headers?.['x-access-token']
           }
