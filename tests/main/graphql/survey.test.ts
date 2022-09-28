@@ -91,5 +91,26 @@ describe('Survey GraphQL', () => {
         image: null
       }])
     })
+
+    it('Should return 403 on load surveys without accessToken', async () => {
+      const currentDay = new Date()
+      await surveyCollection.insertOne({
+        question: 'foo?',
+        answers: [{
+          answer: 'bar',
+          image: 'images/foo.jpg'
+        }, {
+          answer: 'bar?'
+        }],
+        createdAt: currentDay
+      })
+
+      const expectedResponse = await request(app)
+        .post('/graphql')
+        .send({ query })
+
+      expect(expectedResponse.status).toBe(403)
+      expect(expectedResponse.body.errors[0].message).toBe('Access denied')
+    })
   })
 })
