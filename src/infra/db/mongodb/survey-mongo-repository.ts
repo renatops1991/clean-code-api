@@ -18,12 +18,12 @@ implements
   CheckSurveyByIdRepository,
   LoadAnswersBySurveyRepository {
   async add (surveyData: AddSurvey.Params): Promise<void> {
-    const collection = await MongoHelper.getCollection('surveys')
+    const collection = MongoHelper.getCollection('surveys')
     await collection.insertOne(surveyData)
   }
 
   async loadAll (accountId: string): Promise<LoadSurveysRepository.Result> {
-    const collection = await MongoHelper.getCollection('surveys')
+    const collection = MongoHelper.getCollection('surveys')
     const query = new QueryBuilder()
       .lookup({
         from: 'surveysResults',
@@ -59,13 +59,13 @@ implements
   }
 
   async loadById (id: string): Promise<LoadSurveyByIdRepository.Result> {
-    const collection = await MongoHelper.getCollection('surveys')
+    const collection = MongoHelper.getCollection('surveys')
     const survey = await collection.findOne({ _id: new ObjectId(id) })
     return survey && MongoHelper.map(survey)
   }
 
   async loadAnswers (id: string): Promise<LoadAnswersBySurveyRepository.Result> {
-    const collection = await MongoHelper.getCollection('surveys')
+    const collection = MongoHelper.getCollection('surveys')
     const query = new QueryBuilder()
       .match({
         _id: new ObjectId(id)
@@ -80,7 +80,7 @@ implements
   }
 
   async checkById (id: string): Promise<CheckSurveyByIdRepository.Result> {
-    const collection = await MongoHelper.getCollection('surveys')
+    const collection = MongoHelper.getCollection('surveys')
     const survey = await collection.findOne(
       { _id: new ObjectId(id) }, {
         projection: {
