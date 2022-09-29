@@ -22,6 +22,86 @@ Outside the course, I used some references like [Clean Code TypeScript](https://
 - [PUT] - Save Survey Result `{{host}}/api/surveys/{{survey-id}}/results`
 - [GET] - Load Survey Result `{{host}}/api/surveys/{{survey-id}}/results`
 
+## GraphQL routes
+URI: `{{host}}/graphql`
+
+```json
+// Create User
+mutation {
+    signUp(name: "Jonh Foo Bar", email: "jonhfoobar@email.com", password: "12345", passwordConfirmation: "12345") {
+        accessToken
+        name
+  }
+}
+```
+
+```json
+//  Sign in user
+query {
+  signIn(email: "jonhfoobar@email.com", password: "12345"){
+    accessToken
+  }
+}
+```
+
+```json
+// Create Survey
+mutation {
+  survey(question: "test?", answers: [{ image: "foo", answer: "foo" }])
+}
+```
+
+```json
+// Search All Surveys
+query {
+  surveys {
+    id
+    question
+    answers {
+      image
+      answer
+    }
+    createdAt 
+  }
+}
+```
+
+```json
+// Answer Survey
+mutation {
+  saveSurveyResult(surveyId: "6328d447c15003f6e6865391", answer: "foo") {
+    surveyId
+    question
+    createdAt
+    answers {
+      image
+      answer
+      isCurrentAccountAnswer
+      percent
+      count
+    }
+  }
+}
+```
+
+```json
+// Load Survey Result
+query{
+  surveyResult(surveyId: "6328d447c15003f6e6865391") {
+    surveyId
+    question
+    createdAt
+    answers {
+      image
+      answer
+      isCurrentAccountAnswer
+      percent
+      count
+    }
+  }
+}
+```
+
 ## API Docs
 
 Swagger: `{{host}}/api-docs`
@@ -39,6 +119,7 @@ Swagger: `{{host}}/api-docs`
 - SOLID
 - DDD
 - TDD
+- GraphQL
 
 
 ## Docker Local Development
