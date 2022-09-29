@@ -116,4 +116,24 @@ describe('Survey GraphQL', () => {
       expect(expectedResponse.body.errors[0].message).toBe('Access denied')
     })
   })
+
+  describe('Survey', () => {
+    const query = `
+    mutation {
+      survey(question: "foo?", answers: [{
+        image: "foo.jpg"
+        answer: "bar "
+      }])
+    }
+  `
+    it('Should create survey with success', async () => {
+      const accessToken = await makeAccessToken()
+      const expectedResponse = await request(app)
+        .post('/graphql')
+        .set('x-access-token', accessToken)
+        .send({ query })
+
+      expect(expectedResponse.status).toBe(200)
+    })
+  })
 })
