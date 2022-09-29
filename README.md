@@ -25,7 +25,7 @@ Outside the course, I used some references like [Clean Code TypeScript](https://
 ## GraphQL routes
 URI: `{{host}}/graphql`
 
-```json
+```graphql
 // Create User
 mutation {
     signUp(name: "Jonh Foo Bar", email: "jonhfoobar@email.com", password: "12345", passwordConfirmation: "12345") {
@@ -35,7 +35,7 @@ mutation {
 }
 ```
 
-```json
+```graphql
 //  Sign in user
 query {
   signIn(email: "jonhfoobar@email.com", password: "12345"){
@@ -44,14 +44,14 @@ query {
 }
 ```
 
-```json
+```graphql
 // Create Survey
 mutation {
   survey(question: "test?", answers: [{ image: "foo", answer: "foo" }])
 }
 ```
 
-```json
+```graphql
 // Search All Surveys
 query {
   surveys {
@@ -66,7 +66,7 @@ query {
 }
 ```
 
-```json
+```graphql
 // Answer Survey
 mutation {
   saveSurveyResult(surveyId: "6328d447c15003f6e6865391", answer: "foo") {
@@ -84,7 +84,7 @@ mutation {
 }
 ```
 
-```json
+```graphql
 // Load Survey Result
 query{
   surveyResult(surveyId: "6328d447c15003f6e6865391") {
