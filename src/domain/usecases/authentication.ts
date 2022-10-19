@@ -1,4 +1,4 @@
-export interface Authentication{
+export interface Authentication {
   auth (authentication: Authentication.Params): Promise<Authentication.Result>
 }
 
