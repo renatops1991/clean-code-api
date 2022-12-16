@@ -4,7 +4,7 @@ import { throwError, fixturesSurveyParams } from '@/tests/domain/fixtures'
 import { mockAddSurveyRepository } from '../mocks'
 import MockDate from 'mockdate'
 
-interface SutTypes{
+interface SutTypes {
   sut: DbAddSurvey
   addSurveyRepositoryStub: AddSurveyRepository
 }
